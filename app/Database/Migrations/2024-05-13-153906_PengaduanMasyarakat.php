@@ -15,16 +15,17 @@ class PengaduanMasyarakat extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'deksripsi' => [
+            'description' => [
                 'type'       => 'LONGTEXT',
-                'null'=> true,
+                'null' => true,
             ],
             'foto' => [
                 'type' => 'VARCHAR',
+                'constraint'=> 255,
                 'null' => true,
             ],
         ]);
-        $this->forge->addPrimaryKey('id', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('pengaduan');
     }
 
