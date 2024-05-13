@@ -9,14 +9,23 @@
 </head>
 
 <body>
-    <h1>Pengaduan Masyarakat</h1>
-    <form>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Comments</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="container">
+        <h1 class="mt-5">Pengaduan Masyarakat</h1>
+        <?php
+        if (session('success')) { ?>
+            <div class="alert alert-success">
+                <?= session('success') ?>
+            </div>
+        <?php }
+        ?>
+        <form action="/store-pengaduan" method="post">
+            <div class="form-floating">
+                <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Masukkan pengaduan disini...</label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+        </form>
+    </div>
 
 
 
