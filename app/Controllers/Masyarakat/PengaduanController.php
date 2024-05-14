@@ -33,7 +33,7 @@ class PengaduanController extends BaseController
         $stopword = $this->stopwords($token);
         $steaming = $this->stemming($stopword);
         $penghapusan = $this->penghapusan($steaming);
-        return $penghapusan;
+        dd($stopword);
     }
 
 
@@ -107,6 +107,14 @@ class PengaduanController extends BaseController
     //     echo "String awal: " . $string . "<br>";
     //     echo "String setelah dihapus: " . $hasil;
     // }
+
+    public function test(){
+        $text = 'saya lihat kasus tipu dan bantu untuk lapor kepada pihak wajib';
+        $stopwords = new StopWord();
+        $result = $stopwords->filterText($text);
+        $cleanedText = preg_replace('/\s+/', ' ', $result);
+        dd($cleanedText) ;
+    }
 
     public function token_lower_clean($text)
     {

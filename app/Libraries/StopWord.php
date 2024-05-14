@@ -14,8 +14,12 @@ class StopWord
 
     public function filterText($text)
     {
-        // Hapus stop words dari teks
-        $filteredText = preg_replace('/\b(' . implode('|', $this->stopWords) . ')\b/i', '', $text);
-        return $filteredText;
+        // Hapus stop words dari teks menggunakan regex
+        $pattern = '/\b(' . implode('|', array_map('preg_quote', $this->stopWords)) . ')\b/i';
+        $filteredText = preg_replace($pattern, '', $text);
+
+        // Hapus spasi ganda yang mungkin dihasilkan setelah penghapusan stopwords
+        $filteredText = preg_replace('/\s+/', ' ', $filteredText);
+        return trim($filteredText);
     }
 }
