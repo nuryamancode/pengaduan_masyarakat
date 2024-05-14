@@ -33,7 +33,7 @@ class PengaduanController extends BaseController
         $stopword = $this->stopwords($token);
         $steaming = $this->stemming($stopword);
         $penghapusan = $this->penghapusan($steaming);
-        dd($stopword);
+        return $penghapusan;
     }
 
 
