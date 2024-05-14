@@ -21,10 +21,12 @@ class PengaduanController extends BaseController
     {
         $description = $this->request->getPost('description');
         $bm25value = $this->bm25($description);
+        // dd($bm25value);
         $pengaduan = new PengaduanModel();
-        $this->$pengaduan->insert($bm25value);
+        $pengaduan->insert(['description' => $bm25value]);
         return redirect()->back()->with('success', 'Berhasil');
     }
+
     public function bm25($text)
     {
         // token
