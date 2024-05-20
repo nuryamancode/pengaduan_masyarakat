@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <h1 class="mt-5">Pengaduan Masyarakat</h1>
+        <h1 class="mt-5">Data Latih</h1>
         <?php
         if (session('success')) { ?>
             <div class="alert alert-success">
@@ -18,19 +18,19 @@
             </div>
         <?php }
         ?>
-        <form action="/store-pengaduan" method="post">
+        <form action="/store-data-latih" method="post">
             <div class="form-floating">
-                <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea class="form-control" name="text" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                 <label for="floatingTextarea2">Masukkan pengaduan disini...</label>
             </div>
+            <select name="kategori" class="form-select" id="">
+                <option value="Kekerasan">Kekerasan</option>
+                <option value="Penipuan">Penipuan</option>
+                <option value="Pencurian">Pencurian</option>
+            </select>
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
         </form>
 
-        <?php 
-        foreach ($item as $row) {
-            echo $row->data_mentah;
-        }
-        ?>
     </div>
 
 

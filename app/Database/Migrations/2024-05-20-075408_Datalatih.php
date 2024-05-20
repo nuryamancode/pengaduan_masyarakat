@@ -21,7 +21,7 @@ class Datalatih extends Migration
             ],
             'kategori' => [
                 'type'       => 'ENUM',
-                'constaint' => ['Kekerasan', 'Penipuan', 'Pencurian'],
+                'constraint' => ['Kekerasan', 'Penipuan', 'Pencurian'],
                 'null' => true,
             ],
         ]);

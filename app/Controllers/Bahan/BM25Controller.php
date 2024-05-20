@@ -8,16 +8,40 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class BM25Controller extends BaseController
 {
-    public function hasil()
+    public function hasil($corpus1)
     {
-        
+
         $corpus = [
-            "geografis klasifikasi android game 
-            informasi keputusan ahp saw 
-            klastering prediksi c45 apriori cart",
+            $corpus1
         ];
 
-        $query = ["informasi", "android"];
+        $query = [
+            "tendang",
+            "hantam",
+            "keras",
+            "serang",
+            "tebas",
+            "bantai",
+            "tampar",
+            "tonjok",
+            "siksa",
+            "curi",
+            "rampok",
+            "sikat",
+            "gondol",
+            "bangsat",
+            "jarah",
+            "tilep",
+            "selundup",
+            "bajak",
+            "tipu",
+            "bohong",
+            "kelabui",
+            "palsu",
+            "jebak",
+            "manipulasi",
+            "fiktif"
+        ];
 
         // Hitung TF
         $tf = $this->calculateTF($corpus, $query);
@@ -34,13 +58,13 @@ class BM25Controller extends BaseController
         // Hitung BM25
         $bm25 = $this->calculateBM25($corpus, $query, $tf, $idf, $avgDocLength);
 
-        return $this->response->setJSON([
+        return [
             'tf' => $tf,
             'df' => $df,
             'idf' => $idf,
             'avgDocLength' => $avgDocLength,
             'bm25' => $bm25,
-        ]);
+        ];
     }
 
     private function calculateTF($corpus, $query)
@@ -108,11 +132,11 @@ class BM25Controller extends BaseController
                 }
             }
 
-            $bm25[$docIndex] = round($score, 4);
+            $bm25[$docIndex] = round($score, 1);
         }
 
         return $bm25;
     }
 
-    
+
 }

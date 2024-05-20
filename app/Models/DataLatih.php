@@ -4,18 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PengaduanModel extends Model
+class DataLatih extends Model
 {
-    protected $table            = 'pengaduan';
+    protected $table            = 'data_latih';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'data_mentah',
-        'data_cleaning',
-        'foto',
+        'nilai',
+        'kategori'
     ];
 
     protected bool $allowEmptyInserts = false;

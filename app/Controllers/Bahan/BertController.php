@@ -11,11 +11,19 @@ class BertController extends BaseController
 {
 
 
+    public function bert($text)
+    {
+        $token = $this->token_lower_clean($text);
+        $stopword = $this->stopwords($token);
+        $steaming = $this->stemming($stopword);
+        $penghapusan = $this->penghapusan($steaming);
+        return $penghapusan;
+    }
     public function token_lower_clean($text)
     {
         $tokens = preg_split('/\s+/', $text);
         $tokens = array_map(function ($token) {
-            if (!empty($token)) {
+            if (!empty ($token)) {
                 return preg_replace("/[^A-Za-z0-9]/", '', $token);
             }
             return $token;
