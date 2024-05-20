@@ -25,6 +25,12 @@
             </div>
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
         </form>
+
+        <?php 
+        foreach ($item as $row) {
+            echo $row->description;
+        }
+        ?>
     </div>
 
 

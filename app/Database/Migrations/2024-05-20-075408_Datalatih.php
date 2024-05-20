@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PengaduanMasyarakat extends Migration
+class Datalatih extends Migration
 {
     public function up()
     {
@@ -15,26 +15,23 @@ class PengaduanMasyarakat extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'data_mentah' => [
-                'type'       => 'LONGTEXT',
+            'nilai' => [
+                'type'       => 'DOUBLE',
                 'null' => true,
             ],
-            'data_cleaning' => [
-                'type'       => 'LONGTEXT',
-                'null' => true,
-            ],
-            'foto' => [
-                'type' => 'VARCHAR',
-                'constraint'=> 255,
+            'kategori' => [
+                'type'       => 'ENUM',
+                'constaint' => ['Kekerasan', 'Penipuan', 'Pencurian'],
                 'null' => true,
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('pengaduan');
+        $this->forge->createTable('data_latih');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pengaduan');
+        $this->forge->dropTable('data_latih');
+        
     }
 }

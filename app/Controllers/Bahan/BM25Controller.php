@@ -3,21 +3,15 @@
 namespace App\Controllers\Bahan;
 
 use App\Controllers\BaseController;
+use App\Models\PengaduanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class BM25Controller extends BaseController
 {
     public function hasil()
     {
+        
         $corpus = [
-            "citra identifikasi fuzzy diagnosis 
-            deteksi logika ekstraksi pakar 
-            genetika visualisasi virtual temu
-            bm25",
-            "kriptografi keamanan robotik 
-            jaringan wireless gateway arduino 
-            protokol prototipe konversi router
-            service cloud",
             "geografis klasifikasi android game 
             informasi keputusan ahp saw 
             klastering prediksi c45 apriori cart",
