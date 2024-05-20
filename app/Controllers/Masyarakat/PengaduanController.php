@@ -3,12 +3,14 @@
 namespace App\Controllers\Masyarakat;
 
 use App\Controllers\BaseController;
+use App\Helpers\BM25Helper;
+use App\Libraries\BM25;
 use App\Libraries\StopWord;
 use App\Models\PengaduanModel;
-use CodeIgniter\HTTP\ResponseInterface;
-use NlpTools\Tokenizers\WhitespaceTokenizer;
-use NlpTools\Stemmers\PorterStemmer;
+use Phpml\Classification\KNearestNeighbors;
+use Phpml\Math\Distance\Minkowski;
 use Sastrawi\Stemmer\StemmerFactory;
+
 
 class PengaduanController extends BaseController
 {
@@ -21,9 +23,11 @@ class PengaduanController extends BaseController
     {
         $description = $this->request->getPost('description');
         $bm25value = $this->bm25($description);
-        // dd($bm25value);
+        $pecah = explode(' ', $bm25value);
         $pengaduan = new PengaduanModel();
-        $pengaduan->insert(['description' => $bm25value]);
+        foreach ($pecah as $item) {
+            $pengaduan->insert(['description' => $item]);
+        }
         return redirect()->back()->with('success', 'Berhasil');
     }
 
@@ -36,7 +40,21 @@ class PengaduanController extends BaseController
         return $penghapusan;
     }
 
+    public function search()
+    {
+        $classifier = new KNearestNeighbors($k = 4);
+        $classifier = new KNearestNeighbors($k = 3, new Minkowski($lambda = 4));
+        $samples = [[1, 3], [1, 4], [2, 4], [3, 1], [4, 1], [4, 2]];
+        $labels = ['a', 'a', 'a', 'b', 'b', 'b'];
 
+        $classifier = new KNearestNeighbors();
+        $classifier->train($samples, $labels);
+        $result = $classifier->predict([[3, 4], [1, 5]]);
+        dd($result);
+
+        $classifier->predict([[3, 2], [1, 5]]);
+        dd(['b', 'a']);
+    }
 
     // public function penghapusan($text)
     // {
@@ -108,12 +126,13 @@ class PengaduanController extends BaseController
     //     echo "String setelah dihapus: " . $hasil;
     // }
 
-    public function test(){
+    public function test()
+    {
         $text = 'saya lihat kasus tipu dan bantu untuk lapor kepada pihak wajib';
         $stopwords = new StopWord();
         $result = $stopwords->filterText($text);
         $cleanedText = preg_replace('/\s+/', ' ', $result);
-        dd($cleanedText) ;
+        dd($cleanedText);
     }
 
     public function token_lower_clean($text)
@@ -169,4 +188,6 @@ class PengaduanController extends BaseController
         $cleanedText = preg_replace('/\s+/', ' ', $result);
         return $cleanedText;
     }
+
+    
 }
