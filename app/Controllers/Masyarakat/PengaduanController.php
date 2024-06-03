@@ -20,7 +20,7 @@ class PengaduanController extends BaseController
     {
         $item = new PengaduanModel();
 
-        return view('masyarakat/index' , ['item' => $item->findAll()]);
+        return view('masyarakat/landing-page' , ['item' => $item->findAll()]);
     }
 
     // public function store()
