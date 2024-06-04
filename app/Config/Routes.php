@@ -5,9 +5,6 @@ use CodeIgniter\Router\RouteCollection;
 /** 
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Masyarakat\PengaduanController::index');
-$routes->get('/login', 'Auth\AuthController::index');
-$routes->get('/register', 'Auth\AuthController::register');
 $routes->get('/adminn', 'Admin\DataLatihController::index');
 $routes->get('/testnn', 'Admin\DataLatihController::knn');
 $routes->get('/testbm', 'Bahan\BM25Controller::hasil');
@@ -16,3 +13,17 @@ $routes->get('/test', 'Masyarakat\PengaduanController::search');
 // $routes->get('/test/{text}', 'Masyarakat\PengaduanController::bm25');
 $routes->post('/store-pengaduan', 'Masyarakat\PengaduanController::store');
 $routes->post('/store-data-latih', 'Admin\DataLatihController::store');
+
+
+
+$routes->get('/', 'Masyarakat\PengaduanController::home');
+$routes->get('/pengaduan', 'Masyarakat\PengaduanController::index');
+
+$routes->group('/login', function ($routes) {
+    $routes->get('/', 'Auth\AuthController::login');
+    $routes->post('/', 'Auth\AuthController::prosesLogin');
+});
+$routes->group('/register', function ($routes) {
+    $routes->get('/', 'Auth\AuthController::register');
+    $routes->post('/', 'Auth\AuthController::prosesRegister');
+});

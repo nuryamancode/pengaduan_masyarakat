@@ -58,8 +58,10 @@
                                             sed do eiusmod magna aliqua. Ut enim ad minim veniam
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn btn-warning text-white"> Login </a>
-                                            <a href="" class="btn btn-warning text-white"> Register </a>
+                                            <a href="<?= base_url('login') ?>" class="btn btn-warning text-white"> Login
+                                            </a>
+                                            <a href="<?= base_url('register') ?>" class="btn btn-warning text-white">
+                                                Register </a>
                                         </div>
                                     </div>
                                 </div>

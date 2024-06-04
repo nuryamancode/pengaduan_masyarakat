@@ -16,11 +16,24 @@ use Sastrawi\Stemmer\StemmerFactory;
 
 class PengaduanController extends BaseController
 {
+    public function home()
+    {
+        if (session('user_id')) {
+            if (session('user_level') == 'user') {
+                return redirect()->to(site_url('pengaduan'));
+            } elseif (session('user_level') == 'admin') {
+                return redirect()->to(site_url('adminn'));
+            } elseif (session('user_level') == 'polisi') {
+                return redirect()->to(site_url('pengaduan'));
+            }
+        }
+        return view('masyarakat/landing-page');
+    }
     public function index()
     {
         $item = new PengaduanModel();
 
-        return view('masyarakat/landing-page' , ['item' => $item->findAll()]);
+        return view('masyarakat/index', ['item' => $item->findAll()]);
     }
 
     // public function store()
@@ -49,7 +62,7 @@ class PengaduanController extends BaseController
         $knn = $this->knn($bm25latih['bm25']);
         $datauji->insert([
             'nilai' => $bm25latih['bm25'][0],
-            'kategori'  => $knn
+            'kategori' => $knn
         ]);
         $pengaduan->insert([
             'data_mentah' => $text,
@@ -72,25 +85,25 @@ class PengaduanController extends BaseController
         foreach ($data as $row) {
             $labels[] = $row->kategori;
         }
-        
+
         // Membuat instance KNearestNeighbors dengan k=3
-        $classifier = new KNearestNeighbors($k=3);
-        
+        $classifier = new KNearestNeighbors($k = 3);
+
         // Melatih model dengan data dan label
         $classifier->train($samples, $labels);
         // Data baru yang ingin diprediksi
         $newSample = $text;
         // dd($newSample);
-        
+
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);
         return $predictedLabel;
-        
+
     }
 
     // public function hasil($corpus1)
     // {
-        
+
     //     $corpus = [
     //         $corpus1
     //     ];
@@ -349,5 +362,5 @@ class PengaduanController extends BaseController
     //     return $cleanedText;
     // }
 
-    
+
 }
