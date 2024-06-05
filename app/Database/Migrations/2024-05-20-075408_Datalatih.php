@@ -19,6 +19,10 @@ class Datalatih extends Migration
                 'type'       => 'DOUBLE',
                 'null' => true,
             ],
+            'data_mentah' => [
+                'type'       => 'LONGTEXT',
+                'null' => true,
+            ],
             'kategori' => [
                 'type'       => 'ENUM',
                 'constraint' => ['Kekerasan', 'Penipuan', 'Pencurian'],

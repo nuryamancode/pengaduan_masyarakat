@@ -96,7 +96,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center">Tambah Pengaduan Anda Di bawah.</h1>
-                    <form action="<?= base_url('/store-pengaduan') ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('/pengaduan') ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Keterangan Pengaduan</label>
                             <textarea class="form-control" name="deskripsi" style="height: 200px;"

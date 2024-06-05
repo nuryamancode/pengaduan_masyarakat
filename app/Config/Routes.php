@@ -10,16 +10,18 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/polisi', function () {
     echo 'halaman polisi';
 });
+// polisi
 
 // admin
-$routes->get('/dashboard', 'Admin\DataLatihController::index');
-$routes->post('/store-data-latih', 'Admin\DataLatihController::store');
+$routes->get('/dashboard', 'Admin\DashboardController::index');
+$routes->get('/data-latih', 'Admin\DataLatihController::index');
+$routes->post('/data-latih', 'Admin\DataLatihController::store');
 // admin
 
 // masyaerakat
 $routes->get('/', 'Masyarakat\PengaduanController::home');
 $routes->get('/pengaduan', 'Masyarakat\PengaduanController::index');
-$routes->post('/store-pengaduan', 'Masyarakat\PengaduanController::store');
+$routes->post('/pengaduan', 'Masyarakat\PengaduanController::store');
 // masyaerakat
 
 // autentikasi

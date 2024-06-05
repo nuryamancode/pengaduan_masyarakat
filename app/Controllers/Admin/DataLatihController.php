@@ -11,8 +11,10 @@ class DataLatihController extends BaseController
 {
     public function index()
     {
+        $datalatih = new DataLatih();
+        $data = $datalatih->findAll();
         return view(
-            'admin/index',
+            'admin/data-latih', ['data' => $data]
         );
     }
 
@@ -20,12 +22,13 @@ class DataLatihController extends BaseController
     {
         $input_bert = new \App\Controllers\Bahan\BertController;
         $input_bm25 = new \App\Controllers\Bahan\BM25Controller;
-        $text = $this->request->getPost('text');
+        $text = $this->request->getPost('deskripsi');
         $kategori = $this->request->getPost('kategori');
         $datalatih = new DataLatih();
         $bertlatih = $input_bert->bert($text);
         $bm25latih = $input_bm25->hasil($bertlatih);
         $datalatih->insert([
+            'data_mentah' => $text,
             'nilai' => $bm25latih['bm25'][0],
             'kategori' => $kategori
         ]);
