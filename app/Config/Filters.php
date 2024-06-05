@@ -34,7 +34,10 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
-        'auth' => \App\Filters\AuthFilter::class,
+        // 'auth' => \App\Filters\AuthFilter::class,
+        'userFilter'   => \App\Filters\UserFilter::class,
+        'adminFilter'   => \App\Filters\AdminFilter::class,
+        'polisiFilter'   => \App\Filters\PolisiFilter::class
     ];
 
     /**
@@ -70,14 +73,33 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            // 'auth' => ['except' => ['auth/*', '/']],
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+            'userFilter' => [
+                'except' => [
+                    '/',
+                    '/login',
+                    '/register',
+                ]
+            ],
         ],
         'after' => [
-            // 'honeypot',
-            // 'secureheaders',
+            'userFilter' => [
+                'except' => [
+                    '/pengaduan',
+                    '/logout',
+                ]
+            ],
+            'adminFilter' => [
+                'except' => [
+                    '/dashboard',
+                    '/logout',
+                ]
+            ],
+            'polisiFilter' => [
+                'except' => [
+                    '/polisi',
+                    '/logout',
+                ]
+            ],
         ],
     ];
 
@@ -106,6 +128,6 @@ class Filters extends BaseFilters
      * @var array<string, array<string, list<string>>>
      */
     public array $filters = [
-        'auth' => ['before' => ['login/*', 'register/*']],
+        // 'auth' => ['before' => ['login/*', 'register/*']],
     ];
 }
