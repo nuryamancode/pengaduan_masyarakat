@@ -85,13 +85,13 @@ class Filters extends BaseFilters
                 'except' => [
                     '/pengaduan',
                     '/logout',
-                    '/store-pengaduan'
                 ]
             ],
             'adminFilter' => [
                 'except' => [
                     '/dashboard',
                     '/logout',
+                    '/data-latih',
                 ]
             ],
             'polisiFilter' => [
