@@ -19,8 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.css') ?>" />
 
     <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" />
@@ -44,13 +43,12 @@
                         <a class="navbar-brand" href="index.html">
                             <span> Guarder </span>
                         </a>
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span> Hani </span>
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item text-warning" href="#">Logout</a>
+                            <a class="dropdown-item text-warning" href="<?= base_url('logout') ?>">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -71,8 +69,7 @@
                                 sed do eiusmod magna aliqua. Ut enim ad minim veniam
                             </p>
                             <div class="text-center">
-                                <a href="#" class="btn btn-warning text-center" data-toggle="modal"
-                                    data-target="#exampleModal"> Pengaduan </a>
+                                <a href="#" class="btn btn-warning text-center" data-toggle="modal" data-target="#exampleModal"> Pengaduan </a>
                             </div>
                         </div>
                     </div>
@@ -81,8 +78,7 @@
         </section>
         <!-- end slider section -->
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -128,9 +124,7 @@
                         <div class="heading_container">
                             <h2>Who Are We?</h2>
                             <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown link
                                 </a>
 
@@ -253,15 +247,9 @@
 
     <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
     <!-- <script src="js/bootstrap.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="<?= base_url('assets/js/custom.js') ?>"></script>
 </body>
 
