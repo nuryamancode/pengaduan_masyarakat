@@ -16,11 +16,15 @@
     <title>Guarder</title>
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.css') ?>" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- DataTables CSS -->
 
     <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.css">
     <!-- Custom styles for this template -->
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" />
     <!-- responsive style -->
@@ -43,9 +47,12 @@
                         <a class="navbar-brand" href="index.html">
                             <span> Guarder </span>
                         </a>
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <span> Hani </span>
+                            <span>
+                                <?= $user['nama'] ?>
+                            </span>
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item text-warning" href="<?= base_url('logout') ?>">Logout</a>
@@ -86,22 +93,64 @@
 
     <section class="about_section layout_padding" id="pengaduan">
         <div class="container">
-            <h1 class="text-center">Tambah Pengaduan Anda Di bawah.</h1>
-            <form action="">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Keterangan Pengaduan</label>
-                    <textarea class="form-control" style="height: 200px;" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Tambah Pengaduan Anda Di bawah.</h1>
+                    <form action="<?= base_url('/store-pengaduan') ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Keterangan Pengaduan</label>
+                            <textarea class="form-control" name="deskripsi" style="height: 200px;"
+                                id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
 
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Tambahkan Foto <small>(opsional)</small></label>
-                    <input type="file" class="form-control-file rounded" id="exampleFormControlFile1"  style="border: 1px solid #000;">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Tambahkan Foto <small>(opsional)</small></label>
+                            <input type="file" name="foto" class="form-control-file rounded"
+                                id="exampleFormControlFile1" style="border: 1px solid #000;">
 
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Kirim</button>
+            </div>
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="mb-3">Data Pengaduan</h2>
+                    <div class="form-group">
+                        <label for="bulanFilter">Filter Bulan:</label>
+                        <select id="bulanFilter" class="form-control">
+                            <option value="">Semua Bulan</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <!-- Tambahkan opsi untuk bulan-bulan lainnya -->
+                        </select>
+                    </div>
                 </div>
-            </form>
+                <div class="card-body">
+                    <table id="pengaduan_table" class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Lorem ipsum dolor sit amet</td>
+                                <td><img src="path/to/image.jpg" alt="Foto Pengaduan"></td>
+                                <td><button class="btn btn-danger">Hapus</button></td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -126,12 +175,21 @@
     </footer>
     <!-- footer section -->
 
-    <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
-    <!-- <script src="js/bootstrap.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="<?= base_url('assets/js/custom.js') ?>"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#pengaduan_table').DataTable();
+        });
+    </script>
 </body>
 
 </html>

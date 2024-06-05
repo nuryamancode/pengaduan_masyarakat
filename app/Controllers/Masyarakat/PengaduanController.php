@@ -9,6 +9,7 @@ use App\Libraries\StopWord;
 use App\Models\DataLatih;
 use App\Models\DataUji;
 use App\Models\PengaduanModel;
+use App\Models\User;
 use Phpml\Classification\KNearestNeighbors;
 use Phpml\Math\Distance\Minkowski;
 use Sastrawi\Stemmer\StemmerFactory;
@@ -31,9 +32,8 @@ class PengaduanController extends BaseController
     }
     public function index()
     {
-        $item = new PengaduanModel();
-
-        return view('masyarakat/index', ['item' => $item->findAll()]);
+        $user = new User();
+        return view('masyarakat/index', ['user'=> $user->find(session('user_id'))]);
     }
 
     // public function store()
@@ -55,8 +55,8 @@ class PengaduanController extends BaseController
         $input_bm25 = new \App\Controllers\Bahan\BM25Controller;
         $pengaduan = new PengaduanModel();
         $datauji = new DataUji();
-        $text = $this->request->getPost('description');
-        // $kategori = $this->request->getPost('kategori');
+        $text = $this->request->getPost('deskripsi');
+        $foto = $this->request->getFile('foto');
         $bertlatih = $input_bert->bert($text);
         $bm25latih = $input_bm25->hasil($bertlatih);
         $knn = $this->knn($bm25latih['bm25']);
@@ -64,10 +64,22 @@ class PengaduanController extends BaseController
             'nilai' => $bm25latih['bm25'][0],
             'kategori' => $knn
         ]);
-        $pengaduan->insert([
-            'data_mentah' => $text,
-            'data_cleaning' => $bertlatih,
-        ]);
+        if ($foto->getError() == 4) {
+            $data = [
+                'id_user' => session()->get('user_id'),
+                'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
+            ];
+        }else{
+            $data = [
+                'id_user' => session()->get('user_id'),
+                'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
+                'foto' => $foto->getRandomName(),
+            ];
+            $foto->move('pengaduan-image', $data['foto']);
+        }
+        $pengaduan->insert($data);
         return redirect()->back()->with('success', 'Berhasil');
     }
 

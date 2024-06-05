@@ -16,6 +16,7 @@ class PengaduanModel extends Model
         'data_mentah',
         'data_cleaning',
         'foto',
+        'id_user',
     ];
 
     protected bool $allowEmptyInserts = false;

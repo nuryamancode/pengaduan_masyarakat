@@ -85,6 +85,7 @@ class Filters extends BaseFilters
                 'except' => [
                     '/pengaduan',
                     '/logout',
+                    '/store-pengaduan'
                 ]
             ],
             'adminFilter' => [
