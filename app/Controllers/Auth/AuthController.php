@@ -10,28 +10,28 @@ class AuthController extends BaseController
 {
     public function login()
     {
-        if (session('user_id')) {
-            if (session('user_level') == 'user') {
-                return redirect()->to(site_url('pengaduan'));
-            }elseif (session('user_level') == 'admin') {
-                return redirect()->to(site_url('adminn'));
-            }elseif (session('user_level') == 'polisi') {
-                return redirect()->to(site_url('pengaduan'));
-            }
-        }
+        // if (session('user_id')) {
+        //     if (session('user_level') == 'user') {
+        //         return redirect()->to(site_url('pengaduan'));
+        //     } elseif (session('user_level') == 'admin') {
+        //         return redirect()->to(site_url('adminn'));
+        //     } elseif (session('user_level') == 'polisi') {
+        //         return redirect()->to(site_url('pengaduan'));
+        //     }
+        // }
         return view('auth/login');
     }
     public function register()
     {
-        if (session('user_id')) {
-            if (session('user_level') == 'user') {
-                return redirect()->to(site_url('pengaduan'));
-            }elseif (session('user_level') == 'admin') {
-                return redirect()->to(site_url('adminn'));
-            }elseif (session('user_level') == 'polisi') {
-                return redirect()->to(site_url('pengaduan'));
-            }
-        }
+        // if (session('user_id')) {
+        //     if (session('user_level') == 'user') {
+        //         return redirect()->to(site_url('pengaduan'));
+        //     } elseif (session('user_level') == 'admin') {
+        //         return redirect()->to(site_url('adminn'));
+        //     } elseif (session('user_level') == 'polisi') {
+        //         return redirect()->to(site_url('pengaduan'));
+        //     }
+        // }
         return view('auth/register');
     }
 
@@ -48,7 +48,7 @@ class AuthController extends BaseController
         if ($user && password_verify($password, $user['password'])) {
             $session->set('islogin', true);
             $session->set('user_id', $user['id']);
-            $session->set('user_level', $user['level']);
+            $session->set('level', $user['level']);
             if ($user['level'] == 'admin') {
                 return redirect()->to(site_url('dashboard'));
             } elseif ($user['level'] == 'user') {
@@ -88,10 +88,17 @@ class AuthController extends BaseController
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'level' => 'user'
         ];
-
         $model->save($data);
 
         return redirect()->to(site_url('login'))->with('success', "Registration Successful");
     }
 
+    public function logout()
+    {
+        // dd(session());
+        session()->remove('islogin');
+        session()->remove('user_id');
+        session()->remove('level');
+        return redirect()->to(base_url('/login'))->with('success', "Logout Successful");
+    }
 }

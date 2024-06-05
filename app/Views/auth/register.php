@@ -7,7 +7,7 @@
     }
 </style>
 <h3 class="mb-3 font-weight-bold text-center">Register</h3>
-<form action="<?= base_url('login') ?>" method="post">
+<form action="<?= base_url('register') ?>" method="post">
     <?= csrf_field() ?>
     <div class="row">
         <div class="col-lg-12">

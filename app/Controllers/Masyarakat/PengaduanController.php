@@ -18,15 +18,15 @@ class PengaduanController extends BaseController
 {
     public function home()
     {
-        if (session('user_id')) {
-            if (session('user_level') == 'user') {
-                return redirect()->to(site_url('pengaduan'));
-            } elseif (session('user_level') == 'admin') {
-                return redirect()->to(site_url('adminn'));
-            } elseif (session('user_level') == 'polisi') {
-                return redirect()->to(site_url('pengaduan'));
-            }
-        }
+        // if (session('user_id')) {
+        //     if (session('user_level') == 'user') {
+        //         return redirect()->to(site_url('pengaduan'));
+        //     } elseif (session('user_level') == 'admin') {
+        //         return redirect()->to(site_url('adminn'));
+        //     } elseif (session('user_level') == 'polisi') {
+        //         return redirect()->to(site_url('pengaduan'));
+        //     }
+        // }
         return view('masyarakat/landing-page');
     }
     public function index()
@@ -98,7 +98,6 @@ class PengaduanController extends BaseController
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);
         return $predictedLabel;
-
     }
 
     // public function hasil($corpus1)
