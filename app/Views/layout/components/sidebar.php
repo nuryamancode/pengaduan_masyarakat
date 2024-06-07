@@ -1,8 +1,8 @@
 <div class="data-scrollbar" data-scroll="1">
     <nav class="iq-sidebar-menu">
         <ul id="iq-sidebar-toggle" class="side-menu">
-            <li class="active sidebar-layout">
-                <a href="../backend/index.html" class="svg-icon">
+            <li class="sidebar-layout <?= current_url() === base_url('/dashboard') ? ' active' : '' ?>">
+                <a href="<?= base_url('/dashboard') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -17,8 +17,8 @@
             <li class="px-3 pt-3 pb-2">
                 <span class="text-uppercase small font-weight-bold">Data Master</span>
             </li>
-            <li class=" sidebar-layout">
-                <a href="../app/user-profile.html" class="svg-icon">
+            <li class=" sidebar-layout <?= current_url() === base_url('/kelola-user') ? ' active' : '' ?>">
+                <a href="<?= base_url('/kelola-user') ?>" class="svg-icon">
                     <i class="">
                         <svg class="svg-icon" id="iq-user-1-1" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +28,7 @@
                     </i><span class="ml-2">Kelola User</span>
                 </a>
             </li>
-            <li class=" sidebar-layout">
+            <li class=" sidebar-layout <?= current_url() === base_url('/data-latih') ? ' active' : '' ?>">
                 <a href="<?= base_url('/data-latih') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
@@ -39,8 +39,8 @@
                     </i><span class="ml-2">Kelola Data Latih</span>
                 </a>
             </li>
-            <li class=" sidebar-layout">
-                <a href="../backend/pages-blank-page.html" class="svg-icon">
+            <li class=" sidebar-layout <?= current_url() === base_url('/kelola-pengaduan') ? ' active' : '' ?>">
+                <a href="<?= base_url('/kelola-pengaduan') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -50,8 +50,8 @@
                     </i><span class="ml-2">Kelola Pengaduan</span>
                 </a>
             </li>
-            <li class=" sidebar-layout">
-                <a href="../backend/pages-blank-page.html" class="svg-icon">
+            <li class=" sidebar-layout <?= current_url() === base_url('/kelola-tindakan') ? ' active' : '' ?>">
+                <a href="<?= base_url('/kelola-tindakan') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">

@@ -39,9 +39,9 @@
                     </svg>
                 </div>
             </div>
-            <?= $this->include('layout/components/sidebar') ?>
+            <?= $this->include('layout/components/polisi/sidebar') ?>
         </div>
-        <?= $this->include('layout/components/navbar') ?>
+        <?= $this->include('layout/components/polisi/navbar') ?>
         <div class="content-page">
             <div class="container-fluid">
                 <?= $this->renderSection('content') ?>

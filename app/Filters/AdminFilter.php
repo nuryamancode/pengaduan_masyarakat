@@ -47,7 +47,7 @@ class AdminFilter implements FilterInterface
     {
         //
         if (session()->get('level') == 'admin') {
-            return redirect()->to(base_url('/dashboard'));
+            return redirect()->to(base_url('/admin/dashboard'));
         }
     }
 }

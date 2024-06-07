@@ -7,15 +7,24 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // polisi
-$routes->get('/polisi', function () {
-    echo 'halaman polisi';
-});
+$routes->get('/polisi/dashboard', 'Polisi\DashboardController::index');
+$routes->get('/tindakan', 'Polisi\TindakanController::index');
 // polisi
 
 // admin
-$routes->get('/dashboard', 'Admin\DashboardController::index');
+$routes->get('/admin/dashboard', 'Admin\DashboardController::index');
 $routes->get('/data-latih', 'Admin\DataLatihController::index');
 $routes->post('/data-latih', 'Admin\DataLatihController::store');
+
+// kelola user
+$routes->get('/kelola-user', 'Admin\UserController::index');
+$routes->post('/kelola-user/(:num)', 'Admin\UserController::update/$1');
+$routes->post('kelola-user/delete/(:num)', 'Admin\UserController::delete/$1');
+// kelola pengaduan
+$routes->get('/kelola-pengaduan', 'Admin\PengaduanController::index');
+// kelola tindakan
+$routes->get('/kelola-tindakan', 'Admin\TindakanController::index');
+
 // admin
 
 // masyaerakat
@@ -31,3 +40,7 @@ $routes->post('/login', 'Auth\AuthController::prosesLogin');
 $routes->get('/register', 'Auth\AuthController::register');
 $routes->post('/register', 'Auth\AuthController::prosesRegister');
 // autentikasi
+
+
+
+$routes->get('knn', 'Bahan\KNNController::knn');

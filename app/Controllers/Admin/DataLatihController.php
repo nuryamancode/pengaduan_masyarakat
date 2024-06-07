@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\DataLatih;
+use App\Models\User;
 use CodeIgniter\HTTP\ResponseInterface;
 use Phpml\Classification\KNearestNeighbors;
 
@@ -12,9 +13,14 @@ class DataLatihController extends BaseController
     public function index()
     {
         $datalatih = new DataLatih();
+        $user = new User();
         $data = $datalatih->findAll();
         return view(
-            'admin/data-latih', ['data' => $data]
+            'admin/data-latih',
+            [
+                'data' => $data,
+                "user" => $user->find(session("user_id")),
+            ],
         );
     }
 
@@ -49,10 +55,10 @@ class DataLatihController extends BaseController
         foreach ($data as $row) {
             $labels[] = $row->kategori;
         }
-        
+
         // Membuat instance KNearestNeighbors dengan k=3
-        $classifier = new KNearestNeighbors($k=3);
-        
+        $classifier = new KNearestNeighbors($k = 3);
+
         // Melatih model dengan data dan label
         $classifier->train($samples, $labels);
         // Data baru yang ingin diprediksi
@@ -62,11 +68,11 @@ class DataLatihController extends BaseController
             ['2'],
         ];
         // dd($newSample);
-        
+
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);
         dd($predictedLabel);
-        
+
     }
 
     public function delete($id)

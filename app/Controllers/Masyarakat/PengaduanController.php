@@ -11,6 +11,7 @@ use App\Models\DataUji;
 use App\Models\PengaduanModel;
 use App\Models\User;
 use Phpml\Classification\KNearestNeighbors;
+use Phpml\Math\Distance\Euclidean;
 use Phpml\Math\Distance\Minkowski;
 use Sastrawi\Stemmer\StemmerFactory;
 
@@ -100,12 +101,12 @@ class PengaduanController extends BaseController
 
         // Membuat instance KNearestNeighbors dengan k=3
         $classifier = new KNearestNeighbors($k = 3);
-
+        // dd($classifier);
+        
         // Melatih model dengan data dan label
         $classifier->train($samples, $labels);
         // Data baru yang ingin diprediksi
         $newSample = $text;
-        // dd($newSample);
 
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);

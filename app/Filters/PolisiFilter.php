@@ -47,7 +47,7 @@ class PolisiFilter implements FilterInterface
     {
         //
         if (session()->get('level') == 'polisi') {
-            return redirect()->to(base_url('/polisi'));
+            return redirect()->to(base_url('/polisi/dashboard'));
         }
     }
 }

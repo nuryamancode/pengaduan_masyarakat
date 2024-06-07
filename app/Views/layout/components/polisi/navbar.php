@@ -26,7 +26,7 @@
                                 <img src="<?= base_url('/admin/images/icon.png') ?>" class="img-fluid avatar-rounded"
                                     alt="user">
                                 <span class="mb-0 ml-2 user-name">
-                                    Admin
+                                    Polisi
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

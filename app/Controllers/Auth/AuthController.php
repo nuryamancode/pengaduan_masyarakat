@@ -50,11 +50,11 @@ class AuthController extends BaseController
             $session->set('user_id', $user['id']);
             $session->set('level', $user['level']);
             if ($user['level'] == 'admin') {
-                return redirect()->to(site_url('dashboard'));
+                return redirect()->to(base_url('/admin/dashboard'));
             } elseif ($user['level'] == 'user') {
-                return redirect()->to(site_url('pengaduan'));
+                return redirect()->to(base_url('/pengaduan'));
             } elseif ($user['level'] == 'polisi') {
-                return redirect()->to(site_url('dashboard'));
+                return redirect()->to(base_url('/polisi/dashboard'));
             }
         } else {
             return redirect()->to(site_url('login'))->with('error', "Invalid Credential");

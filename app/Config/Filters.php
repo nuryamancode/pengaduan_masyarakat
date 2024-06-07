@@ -89,15 +89,19 @@ class Filters extends BaseFilters
             ],
             'adminFilter' => [
                 'except' => [
-                    '/dashboard',
+                    '/admin/dashboard',
                     '/logout',
-                    '/data-latih',
+                    '/data-latih*',
+                    '/kelola-user*',
+                    '/kelola-pengaduan*',
+                    '/kelola-tindakan*',
                 ]
             ],
             'polisiFilter' => [
                 'except' => [
-                    '/polisi',
+                    '/polisi/dashboard',
                     '/logout',
+                    '/tindakan*',
                 ]
             ],
         ],
