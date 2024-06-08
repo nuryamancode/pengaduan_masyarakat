@@ -32,9 +32,9 @@
                         $no = 1; // Inisialisasi nomor urut di luar loop
                         foreach ($data as $key => $item) { ?>
                             <tr>
-                                <th scope="row">
+                                <td scope="row">
                                     <?= $no++ // Inkrement nomor urut ?>
-                                </th>
+                                </td>
                                 <td class="no-wrap">
                                     <?= $item['nama'] ?>
                                 </td>

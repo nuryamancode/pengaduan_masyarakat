@@ -11,7 +11,8 @@ class TindakanController extends BaseController
     public function index()
     {
         $tindakan = new Tindakan();
-        $data = $tindakan->findAll();
-        return view('admin/kelola-tindakan', ['data' => $data]);
+        $excludedStatuses = ['Ditolak', 'Menunggu Konfirmasi'];
+        $data = $tindakan->getTindakanWithExcludedStatuses($excludedStatuses);
+        return view('admin/kelola-tindakan', ['data' => $data, 'title' => 'Kelola Tindakan']);
     }
 }

@@ -77,6 +77,7 @@ class Filters extends BaseFilters
                     '/',
                     '/login',
                     '/register',
+                    '/knn',
                 ]
             ],
         ],

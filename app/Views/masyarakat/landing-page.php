@@ -78,9 +78,8 @@
     <!-- footer section -->
     <footer class="container-fluid footer_section">
         <p>
-            &copy; <span id="currentYear"></span> All Rights Reserved. Design by
-            <a href="https://html.design/">Free Html Templates</a> Distribution by
-            <a href="https://themewagon.com">ThemeWagon</a>
+            &copy; <span id="currentYear"></span> Copyright. Pengaduan Masyarakat Polres Subang, Jawa Barat
+            
         </p>
     </footer>
     <!-- footer section -->

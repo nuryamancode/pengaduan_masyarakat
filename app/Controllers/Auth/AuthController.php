@@ -49,6 +49,7 @@ class AuthController extends BaseController
             $session->set('islogin', true);
             $session->set('user_id', $user['id']);
             $session->set('level', $user['level']);
+            $session->set('nama', $user['nama']);
             if ($user['level'] == 'admin') {
                 return redirect()->to(base_url('/admin/dashboard'));
             } elseif ($user['level'] == 'user') {

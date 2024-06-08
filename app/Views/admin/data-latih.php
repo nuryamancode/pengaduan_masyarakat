@@ -16,7 +16,8 @@
             </div>
             <div class="card-body">
                 <div class="text-right mb-3">
-                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#tambahData"><i class="bi bi-plus-circle-fill"></i></a>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#tambahData"><i
+                            class="bi bi-plus-circle-fill"></i></a>
                 </div>
                 <table id="data_latih_table" class="table table-bordered">
                     <thead class="table-dark">
@@ -29,39 +30,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($data as $key => $item) { ?>
+                        <?php foreach ($data as $key => $item) { ?>
                             <tr>
-                                <th scope="row">
-                                    <?= $key + 1 ?>
-                                </th>
-                                <td class="no-wrap">
-                                    <?= $item->data_mentah ?>
-                                </td>
+                                <td scope="row"><?= $key + 1 ?></td>
+                                <td class="no-wrap"><?= $item['data_mentah'] ?></td>
+                                <td><?= $item['nilai'] ?></td>
+                                <td><?= $item['kategori'] ?></td>
                                 <td>
-                                    <?= $item->nilai ?>
-                                </td>
-                                <td>
-                                    <?= $item->kategori ?>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger">
-                                    <i class="bi bi-pencil-square"></i>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#editData<?= $item['id'] ?>"
+                                        data-id="<?= $item['id'] ?>" data-data_mentah="<?= $item['data_mentah'] ?>"
+                                        data-nilai="<?= $item['nilai'] ?>" data-kategori="<?= $item['kategori'] ?>">
+                                        <i class="bi bi-pencil-square"></i>
                                     </button>
-                                    <button class="btn btn-danger">
-                                    <i class="bi bi-trash3-fill"></i>
-                                    </button>
+                                    <form action="<?= base_url('/data-latih/delete/' . $item['id']) ?>" method="post"
+                                        class="d-inline delete-form">
+                                        <button type="button" class="btn btn-danger delete-btn mt-2">
+                                            <i class="bi bi-trash3-fill"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
-                        <?php }
-                        ?>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -75,15 +70,13 @@
             <form action="<?= base_url('/data-latih') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Data Latih <small>(berikan kalimat atau
-                                teks)</small></label>
+                        <label for="deskripsi">Data Latih <small>(berikan kalimat atau teks)</small></label>
                         <textarea class="form-control" name="deskripsi" style="height: 100px; border: 1px solid #000;"
-                            id="exampleFormControlTextarea1" rows="3"></textarea>
+                            id="deskripsi" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Kategori</label>
-                        <select class="custom-select" name="kategori" id="exampleFormControlTextarea1"
-                            style="border: 1px solid #000;">
+                        <label for="kategori">Kategori</label>
+                        <select class="custom-select" name="kategori" id="kategori" style="border: 1px solid #000;">
                             <option selected>-- Pilih Kategori --</option>
                             <option value="Kekerasan">Kekerasan</option>
                             <option value="Penipuan">Penipuan</option>
@@ -99,42 +92,47 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="editData" tabindex="-1" aria-labelledby="editDataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editDataLabel">Tambah Data Latih</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+<?php foreach ($data as $items) { ?>
+    <div class="modal fade" id="editData<?= $items['id'] ?>" tabindex="-1" aria-labelledby="editDataLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editDataLabel">Edit Data Latih</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('/data-latih/update/' . $items['id']) ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $items['id'] ?>">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="deskripsi">Data Latih <small>(berikan kalimat atau teks)</small></label>
+                            <textarea class="form-control" name="deskripsi" style="height: 100px; border: 1px solid #000;"
+                                id="deskripsi" rows="3"><?= $items['data_mentah'] ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_kategori">Kategori</label>
+                            <select class="custom-select" name="kategori" id="edit_kategori" style="border: 1px solid #000;">
+                                <option value="" disabled>-- Pilih Kategori --</option>
+                                <option value="Kekerasan" <?= $items['kategori'] === 'Kekerasan' ? 'selected' : '' ?>>Kekerasan</option>
+                                <option value="Penipuan" <?= $items['kategori'] === 'Penipuan' ? 'selected' : '' ?>>Penipuan</option>
+                                <option value="Pencurian" <?= $items['kategori'] === 'Pencurian' ? 'selected' : '' ?>>Pencurian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
-            <form action="<?= base_url('/data-latih') ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Data Latih <small>(berikan kalimat atau
-                                teks)</small></label>
-                        <textarea class="form-control" name="deskripsi" style="height: 100px; border: 1px solid #000;"
-                            id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Kategori</label>
-                        <select class="custom-select" name="kategori" id="exampleFormControlTextarea1"
-                            style="border: 1px solid #000;">
-                            <option selected>-- Pilih Kategori --</option>
-                            <option value="Kekerasan">Kekerasan</option>
-                            <option value="Penipuan">Penipuan</option>
-                            <option value="Pencurian">Pencurian</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+<?php } ?>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
@@ -144,36 +142,33 @@
     $(document).ready(function () {
         $('#data_latih_table').DataTable();
 
-        // Menambahkan sweet alert setelah formulir berhasil disubmit
-        $('form').submit(function (event) {
-            event.preventDefault(); // Mencegah formulir dikirim secara default
-            
-            var form = $(this);
-            $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize(),
-                success: function (response) {
-                    // Tampilkan sweet alert setelah berhasil menambahkan data
-                    Swal.fire({
-                        title: 'Sukses!',
-                        text: 'Data berhasil ditambahkan.',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.reload(); // Muat ulang halaman setelah menekan OK
-                        }
-                    });
-                },
-                error: function (xhr, status, error) {
-                    // Tampilkan sweet alert jika terjadi kesalahan
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Terjadi kesalahan saat menambahkan data.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
+        // SweetAlert for form submission based on session flash data
+        <?php if (session()->getFlashdata('message')): ?>
+            Swal.fire({
+                title: '<?= session()->getFlashdata('message_type') === 'success' ? "Sukses!" : "Error!" ?>',
+                text: '<?= session()->getFlashdata('message') ?>',
+                icon: '<?= session()->getFlashdata('message_type') ?>',
+                confirmButtonText: 'OK'
+            });
+        <?php endif; ?>
+
+
+        // SweetAlert for delete confirmation
+        $('.delete-btn').on('click', function () {
+            var form = $(this).closest('form');
+
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
                 }
             });
         });

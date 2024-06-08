@@ -2,7 +2,7 @@
     <nav class="iq-sidebar-menu">
         <ul id="iq-sidebar-toggle" class="side-menu">
             <li class="sidebar-layout <?= current_url() === base_url('/dashboard') ? ' active' : '' ?>">
-                <a href="<?= base_url('/dashboard') ?>" class="svg-icon">
+                <a href="<?= base_url('/polisi/dashboard') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -11,7 +11,6 @@
                         </svg>
                     </i>
                     <span class="ml-2">Dashboard</span>
-                    <p class="mb-0 w-10 badge badge-pill badge-primary">6</p>
                 </a>
             </li>
             <li class="px-3 pt-3 pb-2">
@@ -25,7 +24,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
-                    </i><span class="ml-2">Kelola Tindakan</span>
+                    </i><span class="ml-2">Tindakan</span>
                 </a>
             </li>
         </ul>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Datum | CRM Admin Dashboard Template</title>
+    <title>PM Polisi | <?= $title ?></title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= base_url('admin/images/favicon.ico') ?>" />
@@ -29,7 +29,7 @@
                     <img src="<?= base_url('admin/images/logopolres.png') ?>" class="img-fluid rounded-normal light-logo" alt="logo">
                     <img src="<?= base_url('admin/images/logopolres.png') ?>" class="img-fluid rounded-normal d-none sidebar-light-img"
                         alt="logo">
-                    <span>Datum</span>
+                    <span>PM</span>
                 </a>
                 <div class="side-menu-bt-sidebar-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-light wrapper-menu" width="30" fill="none"

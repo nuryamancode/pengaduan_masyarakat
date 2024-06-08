@@ -9,6 +9,7 @@ use App\Libraries\StopWord;
 use App\Models\DataLatih;
 use App\Models\DataUji;
 use App\Models\PengaduanModel;
+use App\Models\Tindakan;
 use App\Models\User;
 use Phpml\Classification\KNearestNeighbors;
 use Phpml\Math\Distance\Euclidean;
@@ -20,35 +21,19 @@ class PengaduanController extends BaseController
 {
     public function home()
     {
-        // if (session('user_id')) {
-        //     if (session('user_level') == 'user') {
-        //         return redirect()->to(site_url('pengaduan'));
-        //     } elseif (session('user_level') == 'admin') {
-        //         return redirect()->to(site_url('adminn'));
-        //     } elseif (session('user_level') == 'polisi') {
-        //         return redirect()->to(site_url('pengaduan'));
-        //     }
-        // }
         return view('masyarakat/landing-page');
     }
     public function index()
     {
-        $user = new User();
-        return view('masyarakat/index', ['user'=> $user->find(session('user_id'))]);
+        $userM = new User();
+        $user = $userM->find(session('user_id'));
+        $pengaduan = new PengaduanModel();
+        $data = $pengaduan->where('id_user', $user['id'])->findAll() ?? null;
+        return view('masyarakat/index', [
+            'user' => $user,
+            'data' => $data
+        ]);
     }
-
-    // public function store()
-    // {
-    //     $description = $this->request->getPost('description');
-    //     $bm25value = $this->bert($description);
-    //     $result = $this->hasil($bm25value);
-    //     dd($result);
-    //     $pengaduan = new PengaduanModel();
-    //     $pengaduan->insert(['description' => $bm25value]);
-    //     // foreach ($bm25value as $item) {
-    //     // }
-    //     return redirect()->back()->with('success', 'Berhasil');
-    // }
 
     public function store()
     {
@@ -61,17 +46,14 @@ class PengaduanController extends BaseController
         $bertlatih = $input_bert->bert($text);
         $bm25latih = $input_bm25->hasil($bertlatih);
         $knn = $this->knn($bm25latih['bm25']);
-        $datauji->insert([
-            'nilai' => $bm25latih['bm25'][0],
-            'kategori' => $knn
-        ]);
+
         if ($foto->getError() == 4) {
             $data = [
                 'id_user' => session()->get('user_id'),
                 'data_mentah' => $text,
                 'data_cleaning' => $bertlatih,
             ];
-        }else{
+        } else {
             $data = [
                 'id_user' => session()->get('user_id'),
                 'data_mentah' => $text,
@@ -81,7 +63,15 @@ class PengaduanController extends BaseController
             $foto->move('pengaduan-image', $data['foto']);
         }
         $pengaduan->insert($data);
-        return redirect()->back()->with('success', 'Berhasil');
+        $datauji->insert([
+            'nilai' => $bm25latih['bm25'][0],
+            'kategori' => $knn,
+            'id_user' => session()->get('user_id'),
+            'id_pengaduan' => $pengaduan->getInsertID(),
+        ]);
+        session()->setFlashdata('message', 'Berhasil melakukan pengaduan.');
+        session()->setFlashdata('message_type', 'success');
+        return redirect()->back();
     }
 
     public function knn($text)
@@ -89,16 +79,14 @@ class PengaduanController extends BaseController
         $datalatih = new DataLatih();
         $data = $datalatih->findAll();
         $samples = [];
-
-        foreach ($data as $row) {
-            $samples[] = [$row->nilai];
-        }
-        // Label untuk setiap sampel
         $labels = [];
-        foreach ($data as $row) {
-            $labels[] = $row->kategori;
-        }
 
+        // Label untuk setiap sampel
+        foreach ($data as $row) {
+            $samples[] = [$row['nilai']];
+            $labels[] = $row['kategori'];
+        }
+        
         // Membuat instance KNearestNeighbors dengan k=3
         $classifier = new KNearestNeighbors($k = 3);
         // dd($classifier);
@@ -107,10 +95,30 @@ class PengaduanController extends BaseController
         $classifier->train($samples, $labels);
         // Data baru yang ingin diprediksi
         $newSample = $text;
-
+        
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);
+        dd($newSample,$predictedLabel);
         return $predictedLabel;
+    }
+
+
+    public function downloadFile($fileName)
+    {
+        $filePath =  'lampiran-tindakan/' . $fileName;
+        if (file_exists($filePath)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filePath));
+            readfile($filePath);
+            exit;
+        } else {
+            echo "File not found!";
+        }
     }
 
     // public function hasil($corpus1)

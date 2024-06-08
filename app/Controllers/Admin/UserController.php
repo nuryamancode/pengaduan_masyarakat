@@ -13,14 +13,16 @@ class UserController extends BaseController
         $userModel = new User();
         $data = $userModel->findAll();
         $filteredData = array_filter($data, function ($item) {
-            return $item['level'] === 'user';
+            return $item['level'] === 'user' || $item['level'] === 'polisi';
         });
         $viewData = [
             'data' => $filteredData,
             "user" => $userModel->find(session("user_id")),
+            "title" => "Kelola User",
         ];
         return view('admin/kelola-user', $viewData);
     }
+
 
     public function update($id)
     {

@@ -21,6 +21,12 @@ class DataUji extends Migration
                 'unsigned' => true,
                 'null' => false,
             ],
+            'id_pengaduan' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
+                'null' => false,
+            ],
             'nilai' => [
                 'type' => 'DOUBLE',
                 'null' => true,
@@ -33,12 +39,14 @@ class DataUji extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE', 'fk_id_user');
+        $this->forge->addForeignKey('id_pengaduan', 'pengaduan', 'id', 'CASCADE', 'CASCADE', 'fk_id_pengaduan');
         $this->forge->createTable('data_uji');
     }
 
     public function down()
     {
         $this->forge->dropForeignKey('data_uji', 'fk_id_user');
+        $this->forge->dropForeignKey('data_uji', 'fk_id_pengaduan');
         $this->forge->dropTable('data_uji');
     }
 }

@@ -10,22 +10,36 @@ class PengaduanMasyarakat extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type'           => 'INT',
-                'constraint'     => 5,
-                'unsigned'       => true,
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
                 'auto_increment' => true,
             ],
             'data_mentah' => [
-                'type'       => 'LONGTEXT',
+                'type' => 'LONGTEXT',
                 'null' => true,
             ],
             'data_cleaning' => [
-                'type'       => 'LONGTEXT',
+                'type' => 'LONGTEXT',
                 'null' => true,
             ],
             'foto' => [
                 'type' => 'VARCHAR',
-                'constraint'=> 255,
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'status' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'default' => 'Menunggu Konfirmasi',
+                'null' => false,
+            ],
+            'created_at' => [
+                'type' => 'TIMESTAMP',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'TIMESTAMP',
                 'null' => true,
             ],
         ]);

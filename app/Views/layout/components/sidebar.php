@@ -2,7 +2,7 @@
     <nav class="iq-sidebar-menu">
         <ul id="iq-sidebar-toggle" class="side-menu">
             <li class="sidebar-layout <?= current_url() === base_url('/dashboard') ? ' active' : '' ?>">
-                <a href="<?= base_url('/dashboard') ?>" class="svg-icon">
+                <a href="<?= base_url('/admin/dashboard') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -11,7 +11,6 @@
                         </svg>
                     </i>
                     <span class="ml-2">Dashboard</span>
-                    <p class="mb-0 w-10 badge badge-pill badge-primary">6</p>
                 </a>
             </li>
             <li class="px-3 pt-3 pb-2">

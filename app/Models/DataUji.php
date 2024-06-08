@@ -9,12 +9,14 @@ class DataUji extends Model
     protected $table            = 'data_uji';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'object';
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
         'nilai',
-        'kategori'
+        'kategori',
+        'id_user',
+        'id_pengaduan',
     ];
 
     protected bool $allowEmptyInserts = false;

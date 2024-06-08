@@ -9,19 +9,25 @@ use CodeIgniter\Router\RouteCollection;
 // polisi
 $routes->get('/polisi/dashboard', 'Polisi\DashboardController::index');
 $routes->get('/tindakan', 'Polisi\TindakanController::index');
+$routes->post('/tindakan/update/(:num)', 'Polisi\TindakanController::update/$1');
+$routes->get('/download-file/(:any)', 'Masyarakat\PengaduanController::downloadFile/$1');
 // polisi
 
 // admin
 $routes->get('/admin/dashboard', 'Admin\DashboardController::index');
 $routes->get('/data-latih', 'Admin\DataLatihController::index');
 $routes->post('/data-latih', 'Admin\DataLatihController::store');
+$routes->post('/data-latih/delete/(:num)', 'Admin\DataLatihController::delete/$1');
+$routes->post('/data-latih/update/(:num)', 'Admin\DataLatihController::update/$1');
 
 // kelola user
 $routes->get('/kelola-user', 'Admin\UserController::index');
 $routes->post('/kelola-user/(:num)', 'Admin\UserController::update/$1');
-$routes->post('kelola-user/delete/(:num)', 'Admin\UserController::delete/$1');
 // kelola pengaduan
 $routes->get('/kelola-pengaduan', 'Admin\PengaduanController::index');
+$routes->post('kelola-pengaduan/delete/(:num)', 'Admin\PengaduanController::delete/$1');
+$routes->post('kelola-pengaduan/accept/(:num)', 'Admin\PengaduanController::accept/$1');
+$routes->post('kelola-pengaduan/reject/(:num)', 'Admin\PengaduanController::reject/$1');
 // kelola tindakan
 $routes->get('/kelola-tindakan', 'Admin\TindakanController::index');
 
@@ -43,4 +49,4 @@ $routes->post('/register', 'Auth\AuthController::prosesRegister');
 
 
 
-$routes->get('knn', 'Bahan\KNNController::knn');
+$routes->get('knn', 'Bahan\KNNController::index');

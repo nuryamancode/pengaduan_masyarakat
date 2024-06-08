@@ -14,7 +14,6 @@ class BM25Controller extends BaseController
         $corpus = [
             $corpus1
         ];
-
         $query = [
             "tendang",
             "hantam",
@@ -45,19 +44,18 @@ class BM25Controller extends BaseController
 
         // Hitung TF
         $tf = $this->calculateTF($corpus, $query);
-
+        
         // Hitung DF
         $df = $this->calculateDF($corpus, $query);
-
+        
         // Hitung IDF
         $idf = $this->calculateIDF($corpus, $df);
-
+        
         // Hitung Average Document Length
         $avgDocLength = $this->calculateAvgDocLength($corpus);
-
+        
         // Hitung BM25
         $bm25 = $this->calculateBM25($corpus, $query, $tf, $idf, $avgDocLength);
-
         return [
             'tf' => $tf,
             'df' => $df,

@@ -2,6 +2,11 @@
 
 <?= $this->section('content') ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.css">
+<style>
+    .nowrap {
+        white-space: nowrap;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-12 mb-4 mt-1">
@@ -19,15 +24,65 @@
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Tempat</th>
-                            <th scope="col">Tanggal Lahir</th>
-                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Nama Pengadu</th>
+                            <th scope="col">Nama Polisi</th>
+                            <th scope="col">Keterangan Pengadu</th>
+                            <th scope="col">Status Pengaduan</th>
+                            <th scope="col">Keterangan Tindakan</th>
+                            <th scope="col">Lampiran Tindakan</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+
+                        use App\Models\PengaduanModel;
+                        use App\Models\User;
+
+                        foreach ($data as $key => $item) {
+                            $pengaduan = new PengaduanModel();
+                            $usermodel = new User();
+                            $data_pengaduan = $pengaduan->find($item['id_pengaduan']);
+                            $pengadu = $usermodel->find($data_pengaduan['id_user']);
+                            $user = $usermodel->find($item['id_user']);
+
+                            ?>
+                            <tr>
+                                <td scope="row"><?= $key + 1 ?></td>
+                                <td class="nowrap">
+                                    <?= isset($pengadu['nama']) ? $pengadu['nama'] : 'Pengadu tidak ditemukan' ?>
+                                </td>
+                                <td class="nowrap"><?= isset($user['nama']) ? $user['nama'] : 'Belum ada tindakan' ?>
+                                <td><?= $data_pengaduan['data_mentah'] ?></td>
+                                <td><?= $data_pengaduan['status'] ?></td>
+                                <td><?= isset($item['keterangan']) ? $item['keterangan'] : 'Belum ada tindakan' ?>
+                                <td>
+                                    <?php if (isset($item['lampiran']) && !empty($item['lampiran'])): ?>
+                                        <?php
+                                        $fileExtension = pathinfo($item['lampiran'], PATHINFO_EXTENSION);
+                                        $allowedImageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                                        $allowedDocumentExtensions = ['pdf', 'doc', 'docx'];
+
+                                        if (in_array($fileExtension, $allowedImageExtensions)) {
+                                            echo '<img src="' . base_url('lampiran-tindakan/' . $item['lampiran']) . '" width="100" height="100">';
+                                        } elseif (in_array($fileExtension, $allowedDocumentExtensions)) {
+                                            echo '<a href="' . site_url('download-file/' . $item['lampiran']) . '" class="btn btn-success">' . 'Download' . '</a>';
+                                        } else {
+                                            echo $item['lampiran'];
+                                        }
+                                        ?>
+                                    <?php else: ?>
+                                        Belum ada lampiran
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#detaile<?= $item['id'] ?>">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -35,57 +90,51 @@
     </div>
 </div>
 
-<?php foreach ($data as $items) { ?>
-    <div class="modal fade" id="detail<?= $items['id'] ?>" tabindex="-1" aria-labelledby="tambahDataLabel" aria-hidden="true">
+
+<?php foreach ($data as $items) {?>
+    <div class="modal fade" id="detaile<?= $items['id'] ?>" tabindex="-1" aria-labelledby="tambahDataLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tambahDataLabel">Detail Data User</h5>
+                    <h5 class="modal-title" id="tambahDataLabel">Detail Tindakan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= site_url('kelola-user/' . $items['id']) ?>" method="post">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="nama">Nama Lengkap</label>
-                            <input type="name" name="nama" class="form-control" id="nama" value="<?= $items['nama'] ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" id="email" value="<?= $items['email'] ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="tempat">Tempat</label>
-                            <input type="text" name="tempat" class="form-control" id="tempat"
-                                value="<?= $items['tempat'] ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir"
-                                value="<?= $items['tgl_lahir'] ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Jenis Kelamin</label><br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin"
-                                    id="laki-laki<?= $items['id'] ?>" value="laki-laki"
-                                    <?= ($items['jenis_kelamin'] == 'laki-laki') ? 'checked' : '' ?>>
-                                <label class="form-check-label" for="laki-laki<?= $items['id'] ?>">Laki-laki</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin"
-                                    id="perempuan<?= $items['id'] ?>" value="perempuan"
-                                    <?= ($items['jenis_kelamin'] == 'perempuan') ? 'checked' : '' ?>>
-                                <label class="form-check-label" for="perempuan<?= $items['id'] ?>">Perempuan</label>
-                            </div>
-                        </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea class="form-control" name="keterangan" style="height: 100px; border: 1px solid #000;"
+                            id="keterangan" rows="3" readonly><?= $items['keterangan'] ?></textarea>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    <div class="form-group">
+                        <label for="keterangan">Status</label>
+                        <input type="text" readonly class="form-control" id="keterangan"
+                            value="<?= $data_pengaduan['status'] ?>">
                     </div>
-                </form>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Lampiran : </label>
+                        <span>
+                            <?php if (isset($items['lampiran']) && !empty($items['lampiran'])): ?>
+                                <?php
+                                $fileExtension = pathinfo($items['lampiran'], PATHINFO_EXTENSION);
+                                $allowedImageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                                $allowedDocumentExtensions = ['pdf', 'doc', 'docx'];
+                                if (in_array($fileExtension, $allowedImageExtensions)) {
+                                    echo '<img src="' . base_url('lampiran-tindakan/' . $items['lampiran']) . '" width="100" height="100">';
+                                } elseif (in_array($fileExtension, $allowedDocumentExtensions)) {
+                                    echo '<a href="' . site_url('download-file/' . $items['lampiran']) . '" class="btn btn-success">' . 'Download' . '</a>';
+                                } else {
+                                    echo $items['lampiran'];
+                                }
+                                ?>
+                            <?php else: ?>
+                                Belum ada lampiran
+                            <?php endif; ?>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -95,9 +144,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(document).ready(function () {
-        $('#data_latih_table').DataTable();
+        $('#data_latih_table').DataTable({
+            "scrollX": true
+        });
     });
 </script>
 <?= $this->endSection() ?>
