@@ -64,6 +64,132 @@ class BM25Controller extends BaseController
             'bm25' => $bm25,
         ];
     }
+    public function kekerasan($corpus1)
+    {
+
+        $corpus = [
+            $corpus1
+        ];
+        $query = [
+            "tendang",
+            "hantam",
+            "keras",
+            "serang",
+            "tebas",
+            "bantai",
+            "fisik",
+            "tampar",
+            "tonjok",
+            "siksa",
+        ];
+        
+        // Hitung TF
+        $tf = $this->calculateTF($corpus, $query);
+        
+        // Hitung DF
+        $df = $this->calculateDF($corpus, $query);
+        
+        // Hitung IDF
+        $idf = $this->calculateIDF($corpus, $df);
+        
+        // Hitung Average Document Length
+        $avgDocLength = $this->calculateAvgDocLength($corpus);
+        
+        // Hitung BM25
+        $bm25 = $this->calculateBM25($corpus, $query, $tf, $idf, $avgDocLength);
+        return [
+            'tf' => $tf,
+            'df' => $df,
+            'idf' => $idf,
+            'avgDocLength' => $avgDocLength,
+            'bm25' => $bm25,
+        ];
+    }
+    public function pencurian($corpus1)
+    {
+
+        $corpus = [
+            $corpus1
+        ];
+        $query = [
+            "curi",
+            "rampok",
+            "sikat",
+            "gondol",
+            "berharga",
+            "nemu",
+            "jarah",
+            "tilep",
+            "selundup",
+            "bajak",
+            "maling",
+            "dicuri",
+        ];
+
+        // Hitung TF
+        $tf = $this->calculateTF($corpus, $query);
+        
+        // Hitung DF
+        $df = $this->calculateDF($corpus, $query);
+        
+        // Hitung IDF
+        $idf = $this->calculateIDF($corpus, $df);
+        
+        // Hitung Average Document Length
+        $avgDocLength = $this->calculateAvgDocLength($corpus);
+        
+        // Hitung BM25
+        $bm25 = $this->calculateBM25($corpus, $query, $tf, $idf, $avgDocLength);
+        return [
+            'tf' => $tf,
+            'df' => $df,
+            'idf' => $idf,
+            'avgDocLength' => $avgDocLength,
+            'bm25' => $bm25,
+        ];
+    }
+    public function penipuan($corpus1)
+    {
+
+        $corpus = [
+            $corpus1
+        ];
+        $query = [
+            "tipu",
+            "bohong",
+            "kelabui",
+            "palsu",
+            "jebak",
+            "ditipu",
+            "manipulasi",
+            "fiktif",
+            "online",
+            "aku",
+            "mengaku",
+        ];
+
+        // Hitung TF
+        $tf = $this->calculateTF($corpus, $query);
+        
+        // Hitung DF
+        $df = $this->calculateDF($corpus, $query);
+        
+        // Hitung IDF
+        $idf = $this->calculateIDF($corpus, $df);
+        
+        // Hitung Average Document Length
+        $avgDocLength = $this->calculateAvgDocLength($corpus);
+        
+        // Hitung BM25
+        $bm25 = $this->calculateBM25($corpus, $query, $tf, $idf, $avgDocLength);
+        return [
+            'tf' => $tf,
+            'df' => $df,
+            'idf' => $idf,
+            'avgDocLength' => $avgDocLength,
+            'bm25' => $bm25,
+        ];
+    }
 
     private function calculateTF($corpus, $query)
     {
@@ -130,7 +256,7 @@ class BM25Controller extends BaseController
                 }
             }
 
-            $bm25[$docIndex] = round($score, 1);
+            $bm25[$docIndex] = round($score, 3);
         }
 
         return $bm25;

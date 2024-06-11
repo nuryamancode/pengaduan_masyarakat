@@ -34,9 +34,13 @@ $routes->get('/kelola-tindakan', 'Admin\TindakanController::index');
 // admin
 
 // masyaerakat
-$routes->get('/', 'Masyarakat\PengaduanController::home');
-$routes->get('/pengaduan', 'Masyarakat\PengaduanController::index');
-$routes->post('/pengaduan', 'Masyarakat\PengaduanController::store');
+// $routes->get('/', 'Masyarakat\PengaduanController::home');
+// $routes->get('/pengaduan', 'Masyarakat\PengaduanController::index');
+// $routes->post('/pengaduan', 'Masyarakat\PengaduanController::store');
+
+$routes->get('/', 'Masyarakat\PengaduanCDua::home');
+$routes->get('/pengaduan', 'Masyarakat\PengaduanCDua::index');
+$routes->post('/pengaduan', 'Masyarakat\PengaduanCDua::store');
 // masyaerakat
 
 // autentikasi

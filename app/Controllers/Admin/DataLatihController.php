@@ -33,16 +33,32 @@ class DataLatihController extends BaseController
         $text = $this->request->getPost('deskripsi');
         $kategori = $this->request->getPost('kategori');
         $bertlatih = $input_bert->bert($text);
-        $bm25latih = $input_bm25->hasil($bertlatih);
-        $datalatih->insert([
-            'data_mentah' => $text,
-            'nilai' => $bm25latih['bm25'][0],
-            'kategori' => $kategori
-        ]);
+        if ($kategori === 'Kekerasan') {
+            $kekerasan = $input_bm25->kekerasan($bertlatih);
+            $datalatih->insert([
+                'data_mentah' => $text,
+                'nilai' => $kekerasan['bm25'][0],
+                'kategori' => $kategori
+            ]);
+        } elseif ($kategori === 'Penipuan') {
+            $penipuan = $input_bm25->penipuan($bertlatih);
+            $datalatih->insert([
+                'data_mentah' => $text,
+                'nilai' => $penipuan['bm25'][0],
+                'kategori' => $kategori
+            ]);
+        } elseif ($kategori === 'Pencurian') {
+            $pencurian = $input_bm25->pencurian($bertlatih);
+            $datalatih->insert([
+                'data_mentah' => $text,
+                'nilai' => $pencurian['bm25'][0],
+                'kategori' => $kategori
+            ]);
+        }
         session()->setFlashdata('message', 'Data berhasil ditambahkan.');
         session()->setFlashdata('message_type', 'success');
         return redirect()->back();
-    }
+    }   
     public function update($id)
     {
         $input_bert = new \App\Controllers\Bahan\BertController;
@@ -51,12 +67,28 @@ class DataLatihController extends BaseController
         $text = $this->request->getPost('deskripsi');
         $kategori = $this->request->getPost('kategori');
         $bertlatih = $input_bert->bert($text);
-        $bm25latih = $input_bm25->hasil($bertlatih);
-        $datalatih->update($id,[
-            'data_mentah' => $text,
-            'nilai' => $bm25latih['bm25'][0],
-            'kategori' => $kategori
-        ]);
+        if ($kategori == 'Kekerasan') {
+            $kekerasan = $input_bm25->kekerasan($bertlatih);
+            $datalatih->update($id, [
+                'data_mentah' => $text,
+                'nilai' => $kekerasan['bm25'][0],
+                'kategori' => $kategori
+            ]);
+        } elseif ($kategori == 'Penipuan') {
+            $penipuan = $input_bm25->penipuan($bertlatih);
+            $datalatih->update($id, [
+                'data_mentah' => $text,
+                'nilai' => $penipuan['bm25'][0],
+                'kategori' => $kategori
+            ]);
+        } elseif ($kategori == 'Pencurian') {
+            $pencurian = $input_bm25->pencurian($bertlatih);
+            $datalatih->update($id, [
+                'data_mentah' => $text,
+                'nilai' => $pencurian['bm25'][0],
+                'kategori' => $kategori
+            ]);
+        }
         session()->setFlashdata('message', 'Data berhasil diubah.');
         session()->setFlashdata('message_type', 'success');
         return redirect()->back();

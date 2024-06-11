@@ -19,6 +19,13 @@ class BertController extends BaseController
         $penghapusan = $this->penghapusan($steaming);
         return $penghapusan;
     }
+    public function bert_admin($text)
+    {
+        $token = $this->token_lower_clean($text);
+        return $token;
+    }
+
+
     public function token_lower_clean($text)
     {
         $tokens = preg_split('/\s+/', $text);

@@ -74,6 +74,9 @@ class PengaduanController extends BaseController
         return redirect()->back();
     }
 
+   
+
+
     public function knn($text)
     {
         $datalatih = new DataLatih();
@@ -86,16 +89,16 @@ class PengaduanController extends BaseController
             $samples[] = [$row['nilai']];
             $labels[] = $row['kategori'];
         }
-        
+
         // Membuat instance KNearestNeighbors dengan k=3
         $classifier = new KNearestNeighbors($k = 3);
         // dd($classifier);
-        
+
         // Melatih model dengan data dan label
         $classifier->train($samples, $labels);
         // Data baru yang ingin diprediksi
         $newSample = $text;
-        
+
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);
         dd($newSample,$predictedLabel);
@@ -105,7 +108,7 @@ class PengaduanController extends BaseController
 
     public function downloadFile($fileName)
     {
-        $filePath =  'lampiran-tindakan/' . $fileName;
+        $filePath = 'lampiran-tindakan/' . $fileName;
         if (file_exists($filePath)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
