@@ -50,7 +50,6 @@ class PengaduanCDua extends BaseController
 
         // Direct matching for specific keywords
         $knn = $this->knn($bm25latih['bm25'], $bertlatih);
-        dd($knn);
 
         if ($foto->getError() == 4) {
             $data = [
@@ -97,9 +96,45 @@ class PengaduanCDua extends BaseController
 
         // Keywords for each label
         $keywords = [
-            'Kekerasan' => ['keras', 'kekerasan', 'pukul'],
-            'Pencurian' => ['curi', 'maling', 'pencuri'],
-            'Penipuan' => ['tipu', 'penipu']
+            'Kekerasan' => [
+                "tendang",
+                "hantam",
+                "keras",
+                "serang",
+                "tebas",
+                "bantai",
+                "fisik",
+                "tampar",
+                "tonjok",
+                "siksa",
+            ],
+            'Pencurian' => [
+                "curi",
+                "rampok",
+                "sikat",
+                "gondol",
+                "berharga",
+                "nemu",
+                "jarah",
+                "tilep",
+                "selundup",
+                "bajak",
+                "maling",
+                "dicuri",
+            ],
+            'Penipuan' => [
+                "tipu",
+                "bohong",
+                "kelabui",
+                "palsu",
+                "jebak",
+                "ditipu",
+                "manipulasi",
+                "fiktif",
+                "online",
+                "aku",
+                "mengaku",
+            ]
         ];
 
         // Check if text contains any of the keywords
@@ -122,7 +157,6 @@ class PengaduanCDua extends BaseController
 
         // Predict label for new data
         $predictedLabel = $classifier->predict($newSample);
-        dd($newSample, $predictedLabel);
 
         return $predictedLabel;
     }

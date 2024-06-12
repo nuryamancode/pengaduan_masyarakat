@@ -101,7 +101,6 @@ class PengaduanController extends BaseController
 
         // Memprediksi label untuk data baru
         $predictedLabel = $classifier->predict($newSample);
-        dd($newSample,$predictedLabel);
         return $predictedLabel;
     }
 
