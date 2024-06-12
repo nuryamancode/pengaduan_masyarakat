@@ -54,8 +54,8 @@
                                             </span>
                                         </h1>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                            sed do eiusmod magna aliqua. Ut enim ad minim veniam
+                                            Sistem Pengaduan Masyarakat merupakan suatu solusi untuk masyarakat agar dapat melakukan pengaduan mereka dengan mudah dan cepat.
+                                            Lakukan pengaduan sekarang!!    
                                         </p>
                                         <div class="btn-box">
                                             <a href="<?= base_url('login') ?>" class="btn btn-warning text-white"> Login

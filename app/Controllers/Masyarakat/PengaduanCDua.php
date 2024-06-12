@@ -137,13 +137,24 @@ class PengaduanCDua extends BaseController
             ]
         ];
 
+        // Flag to check if any keyword is matched
+        $keywordMatched = false;
+
         // Check if text contains any of the keywords
         foreach ($keywords as $label => $labelKeywords) {
             foreach ($labelKeywords as $keyword) {
                 if (strpos(strtolower($text), strtolower($keyword)) !== false) {
+                    $keywordMatched = true;
                     return $label;
                 }
             }
+        }
+
+        // If no keyword is matched, set flash message and return an error message
+        if (!$keywordMatched) {
+            session()->setFlashdata('message', 'Sistem tidak mendukung pengaduan selain Kekerasan, Pencurian, atau Penipuan.');
+            session()->setFlashdata('message_type', 'error');
+            return null; // Returning null or you could redirect to an error page
         }
 
         // Create instance of KNearestNeighbors with k=3
@@ -160,5 +171,7 @@ class PengaduanCDua extends BaseController
 
         return $predictedLabel;
     }
+
+
 
 }

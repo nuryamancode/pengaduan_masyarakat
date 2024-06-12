@@ -77,8 +77,9 @@
                                 Pengaduan Masyarakat
                             </h1>
                             <p class="text-center">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod magna aliqua. Ut enim ad minim veniam
+                                <strong>Selamat Datang, <?= session()->get('nama') ?></strong><br>
+                                Lakukan pengaduan masyarakat tentang kekerasan, pencurian, dan penipuan.
+                                Jika anda ingin melaporkan aduan masyarakat silahkan klik tombol dibawah ini atau scroll ke bawah.
                             </p>
                             <div class="text-center">
 
@@ -101,8 +102,9 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center">Tambah Pengaduan Anda Di bawah.</h1>
+                    <small>Masukkan aduan anda dengan jelas dengan menggunakan bahasa indonesia dengan benar dan tanpa singkatan agar kami dapat terbaca dengan benar, masukkan aduan dengan sesuai perihal yaitu kekerasan, penipuan, dan pencurian</small>
                     <form action="<?= base_url('/pengaduan') ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="exampleFormControlTextarea1">Keterangan Pengaduan</label>
                             <textarea class="form-control" name="deskripsi" style="height: 200px;"
                                 id="exampleFormControlTextarea1" rows="3"></textarea>
