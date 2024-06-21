@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label for="deskripsi">Data Latih <small>(berikan kalimat atau teks)</small></label>
                         <textarea class="form-control" name="deskripsi" style="height: 100px; border: 1px solid #000;"
-                            id="deskripsi" rows="3"></textarea>
+                            id="deskripsi" rows="3" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
@@ -109,7 +109,7 @@
                         <div class="form-group">
                             <label for="deskripsi">Data Latih <small>(berikan kalimat atau teks)</small></label>
                             <textarea class="form-control" name="deskripsi" style="height: 100px; border: 1px solid #000;"
-                                id="deskripsi" rows="3"><?= $items['data_mentah'] ?></textarea>
+                                id="deskripsi" rows="3" required><?= $items['data_mentah'] ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="edit_kategori">Kategori</label>

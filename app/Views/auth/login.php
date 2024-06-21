@@ -13,7 +13,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <label class="text-secondary">Username</label>
-                <input class="form-control" type="name" name="username" placeholder="Enter Username" />
+                <input class="form-control" type="name" name="username" placeholder="Enter Username" required />
             </div>
         </div>
         <div class="col-lg-12 mt-2">
@@ -21,7 +21,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <label class="text-secondary">Password</label>
                 </div>
-                <input class="form-control" type="password" name="password" placeholder="Enter Password" />
+                <input class="form-control" type="password" name="password" placeholder="Enter Password" required />
             </div>
         </div>
     </div>

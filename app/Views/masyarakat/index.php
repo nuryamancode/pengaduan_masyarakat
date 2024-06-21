@@ -183,7 +183,7 @@
                                             }
                                             ?>
                                         <?php else: ?>
-                                            Belum ada lampiran
+                                            Tidak ada lampiran
                                         <?php endif; ?>
                                     </td>
                                     <td class="nowrap text-center"><?= $item['status'] ?></td>

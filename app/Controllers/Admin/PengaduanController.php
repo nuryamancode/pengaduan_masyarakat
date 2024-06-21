@@ -43,9 +43,11 @@ class PengaduanController extends BaseController
         
         if ($record) {
             $pengaduan->update($id, ['status' => 'Sedang Ditinjau']);
-            
+            $id_user = $record['id_user'];
+    
             $tindakan->insert([
                 'id_pengaduan' => $id,
+                'id_user' => $id_user,
             ]);
             
             session()->setFlashdata('message', 'Data diterima.');

@@ -25,9 +25,15 @@ class TindakanController extends BaseController
         $status_tindakan = $this->request->getPost('tindakan');
         $lampiran = $this->request->getFile('lampiran');
         $keterangan = $this->request->getPost('keterangan');
+        if (is_null($keterangan)) {
+            $data_keterangan ='Tidak ada Keterangan';
+        }else{
+            $data_keterangan = $keterangan;
+
+        }
         if ($lampiran->getError() == 4) {
             $data = [
-                'keterangan' => $keterangan,
+                'keterangan' => $data_keterangan,
                 'id_user' => session()->get('user_id'),
             ];
             $status = [
@@ -35,7 +41,7 @@ class TindakanController extends BaseController
             ];
         } else {
             $data = [
-                'keterangan' => $keterangan,
+                'keterangan' => $data_keterangan,
                 'id_user' => session()->get('user_id'),
                 'lampiran' => $lampiran->getRandomName(),
             ];

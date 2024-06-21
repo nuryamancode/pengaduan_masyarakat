@@ -55,15 +55,17 @@
                                 ?>
                                 <tr>
                                     <td scope="row"><?= $key + 1 ?></td>
-                                    <td class="nowrap"><?= isset($user['nama']) ? $user['nama'] : 'Pengadu Tidak Diketahui' ?></td>
+                                    <td class="nowrap"><?= isset($user['nama']) ? $user['nama'] : 'Pengadu Tidak Diketahui' ?>
+                                    </td>
                                     <td><?= $item['data_mentah'] ?></td>
                                     <td><?= $data_uji['nilai'] ?? 'N/A' ?></td>
                                     <td><?= $data_uji['kategori'] ?? 'Belum ada klasifikasi' ?></td>
                                     <td>
-                                        <a href="<?= $foto ?>" data-lightbox="pengaduan-image" class="btn btn-primary"
-                                            data-title="Foto Pengaduan">
+                                        <a href="#" data-toggle="modal" data-target="#lihatFoto<?= $item['id'] ?>"
+                                            class="btn btn-primary" data-title="Foto Pengaduan">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
+
                                     </td>
                                     <td>
                                         <?php if ($item['status'] == 'Menunggu Konfirmasi') { ?>
@@ -99,11 +101,30 @@
     </div>
 </div>
 
+<?php foreach ($data as $items) { ?>
+    <div class="modal fade" id="lihatFoto<?= $items['id'] ?>" tabindex="-1" aria-labelledby="lihatFotoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="lihatFotoLabel">Edit Data Latih</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="<?= $items['foto'] ? base_url('pengaduan-image/' . $items['foto']) : '-' ?>"
+                        alt="Foto Pengaduan" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#kelola_pengaduan').DataTable();
@@ -163,7 +184,7 @@
                 text: "Pengaduan ini akan ditolak?",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',  
+                confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ya, tolak!',
                 cancelButtonText: 'Batal'
@@ -174,18 +195,6 @@
             });
         });
 
-        lightbox.option({
-            'resizeDuration': 900,
-            'wrapAround': false,
-            'imageFadeDuration': 500,
-            'disableScrolling': true,
-            'showImageNumberLabel': false,
-            'fitImagesInViewport': false,
-            'positionFromTop': 30,
-            'alwaysShowNavOnTouchDevices': false,
-            'maxWidth': 1000,
-            'maxHeight': 1000,
-        });
     });
 </script>
 <?= $this->endSection() ?>

@@ -39,12 +39,14 @@ class AuthController extends BaseController
     {
         $session = session();
         $model = new User();
-
+        
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
+        if (is_null($username) || is_null($password)) {
+            return redirect()->back()->withInput()->with('error', 'Semua bidang harus diisi.');
+        }
 
         $user = $model->getUserByUsername($username);
-
         if ($user && password_verify($password, $user['password'])) {
             $session->set('islogin', true);
             $session->set('user_id', $user['id']);
@@ -58,12 +60,13 @@ class AuthController extends BaseController
                 return redirect()->to(base_url('/polisi/dashboard'));
             }
         } else {
-            return redirect()->to(site_url('login'))->with('error', "Invalid Credential");
+            return redirect()->to(site_url('login'))->with('error', "Login Bermasalah");
         }
     }
 
     public function prosesRegister()
     {
+        
         $nama = $this->request->getVar('nama');
         $email = $this->request->getVar('email');
         $tempat = $this->request->getVar('tempat');

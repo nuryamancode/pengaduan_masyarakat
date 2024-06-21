@@ -68,7 +68,7 @@
                                         }
                                         ?>
                                     <?php else: ?>
-                                        Belum ada lampiran
+                                        Tidak ada lampiran
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -110,7 +110,7 @@
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <textarea class="form-control" name="keterangan" style="height: 100px; border: 1px solid #000;"
-                                id="keterangan" rows="3"></textarea>
+                                id="keterangan" rows="3" placeholder="Tambahkan keterangan" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Tambahkan Lampiran <small>(opsional)</small></label>
@@ -119,7 +119,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tindakan">Tindakan</label>
-                            <select class="custom-select" name="tindakan" id="tindakan" style="border: 1px solid #000;">
+                            <select class="custom-select" required name="tindakan" id="tindakan" style="border: 1px solid #000;">
                                 <option value="" disabled selected>-- Pilih Tindakan --</option>
                                 <option value="Tindak Langsung">Tindak Langsung
                                 </option>
@@ -180,7 +180,7 @@
                                 }
                                 ?>
                             <?php else: ?>
-                                Belum ada lampiran
+                                Tidak ada lampiran
                             <?php endif; ?>
                         </span>
                     </div>
