@@ -37,6 +37,7 @@ class DataLatihController extends BaseController
             $kekerasan = $input_bm25->kekerasan($bertlatih);
             $datalatih->insert([
                 'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
                 'nilai' => $kekerasan['bm25'][0],
                 'kategori' => $kategori
             ]);
@@ -44,6 +45,7 @@ class DataLatihController extends BaseController
             $penipuan = $input_bm25->penipuan($bertlatih);
             $datalatih->insert([
                 'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
                 'nilai' => $penipuan['bm25'][0],
                 'kategori' => $kategori
             ]);
@@ -51,6 +53,7 @@ class DataLatihController extends BaseController
             $pencurian = $input_bm25->pencurian($bertlatih);
             $datalatih->insert([
                 'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
                 'nilai' => $pencurian['bm25'][0],
                 'kategori' => $kategori
             ]);
@@ -71,6 +74,7 @@ class DataLatihController extends BaseController
             $kekerasan = $input_bm25->kekerasan($bertlatih);
             $datalatih->update($id, [
                 'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
                 'nilai' => $kekerasan['bm25'][0],
                 'kategori' => $kategori
             ]);
@@ -78,6 +82,7 @@ class DataLatihController extends BaseController
             $penipuan = $input_bm25->penipuan($bertlatih);
             $datalatih->update($id, [
                 'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
                 'nilai' => $penipuan['bm25'][0],
                 'kategori' => $kategori
             ]);
@@ -85,6 +90,7 @@ class DataLatihController extends BaseController
             $pencurian = $input_bm25->pencurian($bertlatih);
             $datalatih->update($id, [
                 'data_mentah' => $text,
+                'data_cleaning' => $bertlatih,
                 'nilai' => $pencurian['bm25'][0],
                 'kategori' => $kategori
             ]);

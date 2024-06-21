@@ -15,7 +15,8 @@ class DataLatih extends Model
     protected $allowedFields    = [
         'nilai',
         'kategori',
-        'data_mentah'
+        'data_mentah',
+        'data_cleaning'
     ];
 
     protected bool $allowEmptyInserts = false;

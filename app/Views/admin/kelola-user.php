@@ -29,11 +29,10 @@
                     </thead>
                     <tbody>
                         <?php
-                        $no = 1; // Inisialisasi nomor urut di luar loop
                         foreach ($data as $key => $item) { ?>
                             <tr>
                                 <td scope="row">
-                                    <?= $no++ // Inkrement nomor urut ?>
+                                    <?= $key+1 ?>
                                 </td>
                                 <td class="no-wrap">
                                     <?= $item['nama'] ?>

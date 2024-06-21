@@ -1,6 +1,11 @@
 <?= $this->extend('layout/base') ?>
 
 <?= $this->section('content') ?>
+<style>
+    .nowrap {
+        white-space: nowrap;
+    }
+</style>
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.css">
 
 <div class="row">
@@ -23,6 +28,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">No.</th>
+                            <th scope="col">Data Mentah</th>
                             <th scope="col">Data Latih</th>
                             <th scope="col">Nilai</th>
                             <th scope="col">Kategori</th>
@@ -34,6 +40,7 @@
                             <tr>
                                 <td scope="row"><?= $key + 1 ?></td>
                                 <td class="no-wrap"><?= $item['data_mentah'] ?></td>
+                                <td class="no-wrap"><?= $item['data_cleaning'] ?></td>
                                 <td><?= $item['nilai'] ?></td>
                                 <td><?= $item['kategori'] ?></td>
                                 <td>
@@ -76,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
-                        <select class="custom-select" name="kategori" id="kategori" style="border: 1px solid #000;">
+                        <select class="custom-select" name="kategori" id="kategori" required style="border: 1px solid #000;">
                             <option selected>-- Pilih Kategori --</option>
                             <option value="Kekerasan">Kekerasan</option>
                             <option value="Penipuan">Penipuan</option>

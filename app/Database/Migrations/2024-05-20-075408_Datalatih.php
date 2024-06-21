@@ -23,6 +23,10 @@ class Datalatih extends Migration
                 'type'       => 'LONGTEXT',
                 'null' => true,
             ],
+            'data_cleaning' => [
+                'type' => 'LONGTEXT',
+                'null' => true,
+            ],
             'kategori' => [
                 'type'       => 'ENUM',
                 'constraint' => ['Kekerasan', 'Penipuan', 'Pencurian'],

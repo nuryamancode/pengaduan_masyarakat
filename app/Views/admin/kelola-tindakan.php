@@ -72,7 +72,7 @@
                                         }
                                         ?>
                                     <?php else: ?>
-                                        Belum ada lampiran
+                                        Tidak ada lampiran
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -130,7 +130,7 @@
                                 }
                                 ?>
                             <?php else: ?>
-                                Belum ada lampiran
+                                Tidak ada lampiran
                             <?php endif; ?>
                         </span>
                     </div>
