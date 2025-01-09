@@ -1,6 +1,7 @@
 # CodeIgniter 4 Application Starter
 
 ## Step By Step
+Sebelum ke step rubah .env copy jadi .env
 1. Pastikan versi php di 8.1 ke atas
 2. diterminal tambahkan ## composer install
 3. setelah sudah migrate dengan ## php spark migrate
