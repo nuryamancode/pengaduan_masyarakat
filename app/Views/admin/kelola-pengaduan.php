@@ -59,7 +59,7 @@
                                     </td>
                                     <td><?= $item['data_mentah'] ?></td>
                                     <td><?= $data_uji['nilai'] ?? 'N/A' ?></td>
-                                    <td><?= $data_uji['kategori'] ?? 'Belum ada klasifikasi' ?></td>
+                                    <td><?= $data_uji['kategori'] ?? 'Kategori Lainnya' ?></td>
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#lihatFoto<?= $item['id'] ?>"
                                             class="btn btn-primary" data-title="Foto Pengaduan">
@@ -113,8 +113,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="<?= $items['foto'] ? base_url('pengaduan-image/' . $items['foto']) : '-' ?>"
-                        alt="Foto Pengaduan" width="100%">
+                    <?php 
+                    if ($items['foto'] != null) {
+                        ?>
+                        <img src="<?= base_url('pengaduan-image/' . $items['foto']) ?>" alt="Foto Pengaduan"
+                            width="100%">
+                        <?php
+                    } else {
+                        echo "Tidak ada Foto";
+                    }
+                    ?>
                 </div>
             </div>
         </div>

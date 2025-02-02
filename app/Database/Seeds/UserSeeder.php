@@ -36,18 +36,6 @@ class UserSeeder extends Seeder
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
             ],
-            [
-                'nama' => 'Police User',
-                'email' => 'polisi@example.com',
-                'tempat' => 'City',
-                'tgl_lahir' => '1985-01-01',
-                'username' => 'polisi',
-                'jenis_kelamin' => 'laki-laki',
-                'password' => $password,
-                'level' => 'polisi',
-                'created_at' => Time::now(),
-                'updated_at' => Time::now(),
-            ],
         ];
 
         // Using Query Builder

@@ -15,32 +15,27 @@ class BM25Controller extends BaseController
             $corpus1
         ];
         $query = [
-            "tendang",
-            "hantam",
-            "keras",
-            "serang",
-            "tebas",
-            "bantai",
-            "tampar",
-            "tonjok",
-            "siksa",
-            "curi",
-            "rampok",
-            "sikat",
-            "gondol",
-            "bangsat",
-            "jarah",
-            "tilep",
-            "selundup",
-            "bajak",
-            "tipu",
-            "bohong",
-            "kelabui",
-            "palsu",
-            "jebak",
-            "manipulasi",
-            "fiktif"
+            // Kekerasan
+            "tendang", "hantam", "keras", "serang", "tebas", "bantai", "tampar", "tonjok", "siksa",
+            "pukul", "hajar", "tikam", "cekik", "bogem", "bacok", "tusuk", "gigit", "cambuk", "jotos",
+            "seruduk", "sabet", "tindas", "sekap", "dobrak", "injak", "gantung", "sergap", "gasak",
+            "tumbuk", "gempur", "gedor", "pecut", "pedang", "tembak", "bom", "cidera", "darah", "korban",
+        
+            // Pencurian
+            "curi", "rampok", "sikat", "gondol", "jarah", "tilep", "selundup", "bajak", "maling",
+            "dicuri", "copet", "tilap", "sekong", "garong", "perampas", "pencopet", "pengutil",
+            "pemeras", "perampok", "penyelundup", "membobol", "menodong", "merampas", "menjarah",
+            "mencopet", "membegal", "merampok", "membongkar", "meringkus", "mengutil", "mencuri",
+            "membajak", "pencurian", "kriminal",
+        
+            // Penipuan
+            "tipu", "bohong", "kelabui", "palsu", "jebak", "manipulasi", "fiktif", "mengaku",
+            "gadungan", "modus", "penipu", "tipuan", "menipu", "penggelapan", "korup", "pemalsuan",
+            "hoaks", "tipu-tipu", "scam", "fraud", "penyelewengan", "perdaya", "rekayasa", "siasat",
+            "iming-iming", "konspirasi", "pemerasan", "sogok", "sindikat", "uang palsu",
+            "pencucian uang", "spekulasi", "aksi tipu", "bohongi", "pura-pura"
         ];
+        
 
         // Hitung TF
         $tf = $this->calculateTF($corpus, $query);
@@ -71,17 +66,11 @@ class BM25Controller extends BaseController
             $corpus1
         ];
         $query = [
-            "tendang",
-            "hantam",
-            "keras",
-            "serang",
-            "tebas",
-            "bantai",
-            "fisik",
-            "tampar",
-            "tonjok",
-            "siksa",
-        ];
+            "tendang", "hantam", "keras", "serang", "tebas", "bantai", "fisik", "tampar", "tonjok", "siksa",
+            "pukul", "hajar", "tikam", "cekik", "bogem", "bacok", "tusuk", "gigit", "cambuk", "jotos", "seruduk",
+            "sabet", "tindas", "sekap", "dobrak", "injak", "gantung", "sergap", "rampas", "gasak", "tumbuk",
+            "gempur", "gedor", "pecut", "pedang", "tembak", "bom", "cidera", "darah", "korban"
+        ];        
         
         // Hitung TF
         $tf = $this->calculateTF($corpus, $query);
@@ -112,18 +101,12 @@ class BM25Controller extends BaseController
             $corpus1
         ];
         $query = [
-            "curi",
-            "rampok",
-            "sikat",
-            "gondol",
-            "berharga",
-            "nemu",
-            "jarah",
-            "tilep",
-            "selundup",
-            "bajak",
-            "maling",
-            "dicuri",
+            "curi", "rampok", "sikat", "gondol", "jarah", "tilep", "selundup", "bajak",
+            "maling", "dicuri", "copet", "gasak", "tilap", "sekong", "garong",
+            "perampas", "tipu", "palsu", "gugat", "pencopet", "pengutil", "pemeras",
+            "perampok", "penyelundup", "membobol", "menodong", "merampas", "menjarah",
+            "mencopet", "membegal", "merampok", "membongkar", "meringkus", "mengutil",
+            "mencuri", "membajak", "pencurian", "kriminal"
         ];
 
         // Hitung TF
@@ -163,10 +146,35 @@ class BM25Controller extends BaseController
             "ditipu",
             "manipulasi",
             "fiktif",
-            "online",
-            "aku",
             "mengaku",
-        ];
+            "gadungan",
+            "modus",
+            "penipu",
+            "tipuan",
+            "menipu",
+            "penggelapan",
+            "korup",
+            "pemalsuan",
+            "hoaks",
+            "tipu-tipu",
+            "scam",
+            "fraud",
+            "penyelewengan",
+            "perdaya",
+            "rekayasa",
+            "siasat",
+            "iming",
+            "konspirasi",
+            "pemerasan",
+            "sogok",
+            "sindikat",
+            "uang palsu",
+            "pencucian uang",
+            "spekulasi",
+            "aksi tipu",
+            "bohongi",
+            "pura-pura",
+        ];        
 
         // Hitung TF
         $tf = $this->calculateTF($corpus, $query);

@@ -49,7 +49,7 @@
                     </i><span class="ml-2">Kelola Pengaduan</span>
                 </a>
             </li>
-            <li class=" sidebar-layout <?= current_url() === base_url('/kelola-tindakan') ? ' active' : '' ?>">
+            <!-- <li class=" sidebar-layout <?= current_url() === base_url('/kelola-tindakan') ? ' active' : '' ?>">
                 <a href="<?= base_url('/kelola-tindakan') ?>" class="svg-icon">
                     <i class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
@@ -59,7 +59,7 @@
                         </svg>
                     </i><span class="ml-2">Kelola Tindakan</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
     <div class="pt-5 pb-5"></div>

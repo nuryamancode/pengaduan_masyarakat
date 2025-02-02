@@ -56,8 +56,6 @@ class AuthController extends BaseController
                 return redirect()->to(base_url('/admin/dashboard'));
             } elseif ($user['level'] == 'user') {
                 return redirect()->to(base_url('/pengaduan'));
-            } elseif ($user['level'] == 'polisi') {
-                return redirect()->to(base_url('/polisi/dashboard'));
             }
         } else {
             return redirect()->to(site_url('login'))->with('error', "Login Bermasalah");

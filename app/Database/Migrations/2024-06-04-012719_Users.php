@@ -51,7 +51,7 @@ class Users extends Migration
             ],
             'level' => [
                 'type'       => 'ENUM',
-                'constraint' => ['user', 'admin', 'polisi'],
+                'constraint' => ['user', 'admin'],
                 'default'    => 'user',
                 'null' => false,
             ],

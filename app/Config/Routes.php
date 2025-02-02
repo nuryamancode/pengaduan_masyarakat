@@ -6,12 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// polisi
-$routes->get('/polisi/dashboard', 'Polisi\DashboardController::index');
-$routes->get('/tindakan', 'Polisi\TindakanController::index');
-$routes->post('/tindakan/update/(:num)', 'Polisi\TindakanController::update/$1');
-$routes->get('/download-file/(:any)', 'Masyarakat\PengaduanController::downloadFile/$1');
-// polisi
 
 // admin
 $routes->get('/admin/dashboard', 'Admin\DashboardController::index');

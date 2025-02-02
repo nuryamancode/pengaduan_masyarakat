@@ -97,45 +97,29 @@ class PengaduanCDua extends BaseController
         // Keywords for each label
         $keywords = [
             'Kekerasan' => [
-                "tendang",
-                "hantam",
-                "keras",
-                "serang",
-                "tebas",
-                "bantai",
-                "fisik",
-                "tampar",
-                "tonjok",
-                "siksa",
+                "tendang", "hantam", "keras", "serang", "tebas", "bantai", "fisik", "tampar", "tonjok", "siksa",
+                "pukul", "hajar", "tikam", "cekik", "bogem", "bacok", "tusuk", "gigit", "cambuk", "jotos", "seruduk",
+                "sabet", "tindas", "sekap", "dobrak", "injak", "gantung", "sergap", "rampas", "gasak", "tumbuk",
+                "gempur", "gedor", "pecut", "pedang", "tembak", "bom", "cidera", "darah", "korban"
             ],
             'Pencurian' => [
-                "curi",
-                "rampok",
-                "sikat",
-                "gondol",
-                "berharga",
-                "nemu",
-                "jarah",
-                "tilep",
-                "selundup",
-                "bajak",
-                "maling",
-                "dicuri",
+                "curi", "rampok", "sikat", "gondol", "jarah", "tilep", "selundup", "bajak",
+                "maling", "dicuri", "copet", "gasak", "tilap", "sekong", "garong",
+                "perampas", "tipu", "palsu", "gugat", "pencopet", "pengutil", "pemeras",
+                "perampok", "penyelundup", "membobol", "menodong", "merampas", "menjarah",
+                "mencopet", "membegal", "merampok", "membongkar", "meringkus", "mengutil",
+                "mencuri", "membajak", "pencurian", "kriminal"
             ],
             'Penipuan' => [
-                "tipu",
-                "bohong",
-                "kelabui",
-                "palsu",
-                "jebak",
-                "ditipu",
-                "manipulasi",
-                "fiktif",
-                "online",
-                "aku",
-                "mengaku",
+                "tipu", "bohong", "kelabui", "palsu", "jebak", "ditipu", "manipulasi", "fiktif",
+                "mengaku", "gadungan", "modus", "penipu", "tipuan", "menipu", "penggelapan",
+                "korup", "pemalsuan", "hoaks", "tipu-tipu", "scam", "fraud", "penyelewengan",
+                "perdaya", "rekayasa", "siasat", "iming-iming", "konspirasi", "pemerasan",
+                "sogok", "sindikat", "uang palsu", "pencucian uang", "spekulasi", "aksi tipu",
+                "bohongi", "pura-pura"
             ]
         ];
+        
 
         // Flag to check if any keyword is matched
         $keywordMatched = false;
