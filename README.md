@@ -1,7 +1,29 @@
 # CodeIgniter 4 Application Starter
 
-## What is CodeIgniter?
+## Step By Step
+Sebelum ke step rubah .env copy jadi .env
+1. Pastikan versi php di 8.1 ke atas
+2. diterminal tambahkan ## composer install
+3. setelah sudah migrate dengan ## php spark migrate
+4. lalu ## php spark db:seed UserSeeder
+5. lalu jalankan dengan ## php spark serve
 
+## Account Login
+Admin 
+email = admin@example.com
+pass = password
+
+Regular User
+email = user@example.com
+pass = password
+
+Police User
+email = polisi@example.com
+pass = password
+
+
+
+##
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
 More information can be found at the [official site](https://codeigniter.com).
 
