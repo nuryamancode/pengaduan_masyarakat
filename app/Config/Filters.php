@@ -96,6 +96,8 @@ class Filters extends BaseFilters
                     '/kelola-user*',
                     '/kelola-pengaduan*',
                     '/kelola-tindakan*',
+                    '/akurasi',
+                    '/akurasi/*',
                 ]
             ],
             'polisiFilter' => [

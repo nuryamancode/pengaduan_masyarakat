@@ -25,6 +25,8 @@ $routes->post('kelola-pengaduan/reject/(:num)', 'Admin\PengaduanController::reje
 // kelola tindakan
 $routes->get('/kelola-tindakan', 'Admin\TindakanController::index');
 
+// akurasi
+$routes->get('/akurasi', 'Admin\ArkurasiController::index');
 // admin
 
 // masyaerakat
